@@ -1,15 +1,16 @@
 {
   "project_info": {
     "project_number": "891880355648",
+    "firebase_url": "https://doctornearby-95dea-default-rtdb.asia-southeast1.firebasedatabase.app",
     "project_id": "doctornearby-95dea",
     "storage_bucket": "doctornearby-95dea.appspot.com"
   },
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:891880355648:android:d0a73840f332cd9d65eca5",
+        "mobilesdk_app_id": "1:891880355648:android:d0cbebc223354f4665eca5",
         "android_client_info": {
-          "package_name": "com.example.flutter_doctor_nearby"
+          "package_name": "com.doan.flutter_doctor_nearby"
         }
       },
       "oauth_client": [],
