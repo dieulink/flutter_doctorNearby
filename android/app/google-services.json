@@ -1,30 +1,30 @@
 {
-  "project_info": {
-    "project_number": "891880355648",
-    "firebase_url": "https://doctornearby-95dea-default-rtdb.asia-southeast1.firebasedatabase.app",
-    "project_id": "doctornearby-95dea",
-    "storage_bucket": "doctornearby-95dea.appspot.com"
-  },
-  "client": [
-    {
-      "client_info": {
-        "mobilesdk_app_id": "1:891880355648:android:d0cbebc223354f4665eca5",
-        "android_client_info": {
-          "package_name": "com.doan.flutter_doctor_nearby"
-        }
-      },
-      "oauth_client": [],
-      "api_key": [
-        {
-          "current_key": "AIzaSyDbREPm2JOC6WjeL7veFfkIqfeC_XV86vU"
-        }
-      ],
-      "services": {
-        "appinvite_service": {
-          "other_platform_oauth_client": []
+    "project_info": {
+      "project_number": "891880355648",
+      "firebase_url": "https://doctornearby-95dea-default-rtdb.asia-southeast1.firebasedatabase.app",
+      "project_id": "doctornearby-95dea",
+      "storage_bucket": "doctornearby-95dea.appspot.com"
+    },
+    "client": [
+      {
+        "client_info": {
+          "mobilesdk_app_id": "1:891880355648:android:d0cbebc223354f4665eca5",
+          "android_client_info": {
+            "package_name": "com.doan.flutter_doctor_nearby"
+          }
+        },
+        "oauth_client": [],
+        "api_key": [
+          {
+            "current_key": "AIzaSyDbREPm2JOC6WjeL7veFfkIqfeC_XV86vU"
+          }
+        ],
+        "services": {
+          "appinvite_service": {
+            "other_platform_oauth_client": []
+          }
         }
       }
-    }
-  ],
-  "configuration_version": "1"
-}
+    ],
+    "configuration_version": "1"
+  }

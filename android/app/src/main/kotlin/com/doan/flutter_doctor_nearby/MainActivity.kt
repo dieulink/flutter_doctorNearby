@@ -1,4 +1,4 @@
-package com.example.flutter_doctor_nearby
+package com.doan.flutter_doctor_nearby
 
 import io.flutter.embedding.android.FlutterActivity
 
