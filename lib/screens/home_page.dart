@@ -1,7 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_doctor_nearby/components/appoinment_shadow_card.dart';
+import 'package:flutter_doctor_nearby/components/bottom_menu.dart';
 import 'package:flutter_doctor_nearby/components/doctor_card_item.dart';
 import 'package:flutter_doctor_nearby/components/icon_button.dart';
 import 'package:flutter_doctor_nearby/components/speciality_card.dart';
+import 'package:flutter_doctor_nearby/screens/profile_page.dart';
 import 'package:flutter_doctor_nearby/ui_values.dart';
 
 class HomePage extends StatefulWidget {
@@ -12,6 +15,7 @@ class HomePage extends StatefulWidget {
 }
 
 class _HomePageState extends State<HomePage> {
+  bool isBookedAppoinment = false;
   @override
   Widget build(BuildContext context) {
     Size size = MediaQuery.of(context).size;
@@ -19,82 +23,104 @@ class _HomePageState extends State<HomePage> {
       child: Scaffold(
         body: Stack(
           children: [
-            Column(
-              children: [
-                Container(
-                  padding: defaulPagePadding,
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      _buildHeader(),
-                      const SizedBox(height: 30),
-                      TextField(
-                        decoration: InputDecoration(
-                          filled: true,
-                          fillColor: Colors.white,
-                          hintText: 'Search',
-                          hintStyle: const TextStyle(color: greyContent),
-                          prefixIcon: Image.asset(searchIcon),
-                          enabledBorder: OutlineInputBorder(
-                              borderRadius: BorderRadius.circular(10.0),
-                              borderSide: const BorderSide(color: greyColor)),
-                          focusedBorder: OutlineInputBorder(
-                              borderRadius: BorderRadius.circular(10.0),
-                              borderSide:
-                                  const BorderSide(color: primaryColor)),
-                          errorBorder: OutlineInputBorder(
-                              borderRadius: BorderRadius.circular(10.0),
-                              borderSide: const BorderSide(color: redColor)),
-                        ),
-                      ),
-                      const SizedBox(height: 20),
-                      Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          const Text(
-                            'Nearby Doctor',
-                            style: TextStyle(
-                              fontWeight: FontWeight.bold,
-                              fontSize: 20,
-                            ),
+            SingleChildScrollView(
+              child: Column(
+                children: [
+                  Container(
+                    padding: defaulPagePadding,
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        _buildHeader(),
+                        const SizedBox(height: 30),
+                        TextField(
+                          decoration: InputDecoration(
+                            filled: true,
+                            fillColor: Colors.white,
+                            hintText: 'Search',
+                            hintStyle: const TextStyle(color: greyContent),
+                            prefixIcon: Image.asset(searchIcon),
+                            enabledBorder: OutlineInputBorder(
+                                borderRadius: BorderRadius.circular(10.0),
+                                borderSide: const BorderSide(color: greyColor)),
+                            focusedBorder: OutlineInputBorder(
+                                borderRadius: BorderRadius.circular(10.0),
+                                borderSide:
+                                    const BorderSide(color: primaryColor)),
+                            errorBorder: OutlineInputBorder(
+                                borderRadius: BorderRadius.circular(10.0),
+                                borderSide: const BorderSide(color: redColor)),
                           ),
-                          GestureDetector(
-                            onTap: () {},
-                            child: const Text(
-                              'See All',
+                        ),
+                        Visibility(
+                          visible: isBookedAppoinment,
+                          child: Column(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                              const SizedBox(height: 20),
+                              const Text(
+                                'My Appointment',
+                                style: TextStyle(
+                                  fontWeight: FontWeight.bold,
+                                  fontSize: 20,
+                                ),
+                              ),
+                              const SizedBox(height: 15),
+                              Center(
+                                child: AppoinmentShadowCard(size: size),
+                              ),
+                            ],
+                          ),
+                        ),
+                        const SizedBox(height: 20),
+                        Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            const Text(
+                              'Nearby Doctor',
                               style: TextStyle(
-                                fontSize: 16,
-                                color: primaryColor,
+                                fontWeight: FontWeight.bold,
+                                fontSize: 20,
                               ),
                             ),
-                          ),
-                        ],
-                      ),
-                      const SizedBox(height: 15),
-                      SizedBox(
-                        height: 130,
-                        child: ListView.builder(
-                            itemCount: 10,
-                            scrollDirection: Axis.horizontal,
-                            itemBuilder: (context, builder) {
-                              return const Row(
-                                children: [
-                                  DoctorCardItem(),
-                                  SizedBox(width: 16),
-                                ],
-                              );
-                            }),
-                      ),
-                    ],
+                            GestureDetector(
+                              onTap: () {},
+                              child: const Text(
+                                'See All',
+                                style: TextStyle(
+                                  fontSize: 16,
+                                  color: primaryColor,
+                                ),
+                              ),
+                            ),
+                          ],
+                        ),
+                        const SizedBox(height: 15),
+                        SizedBox(
+                          height: 130,
+                          child: ListView.builder(
+                              itemCount: 10,
+                              scrollDirection: Axis.horizontal,
+                              itemBuilder: (context, builder) {
+                                return const Row(
+                                  children: [
+                                    DoctorCardItem(),
+                                    SizedBox(width: 16),
+                                  ],
+                                );
+                              }),
+                        ),
+                      ],
+                    ),
                   ),
-                ),
-                const SizedBox(height: 10),
-              ],
+                  const SizedBox(height: 10),
+                ],
+              ),
             ),
             DraggableScrollableSheet(
-              initialChildSize: 0.5,
-              minChildSize: 0.5,
+              initialChildSize: isBookedAppoinment ? 0.22 : 0.5,
+              minChildSize: isBookedAppoinment ? 0.22 : 0.5,
               maxChildSize: 1,
               builder: (context, scrollController) {
                 return Container(
@@ -124,13 +150,12 @@ class _HomePageState extends State<HomePage> {
                       Expanded(
                         child: ListView.builder(
                           controller: scrollController,
-                          itemCount: 10,
-                          itemBuilder: (context, builder) {
-                            return const Column(
-                              children: [
-                                SpecialityCard(),
-                                SizedBox(height: 15),
-                              ],
+                          itemCount: diseases.length,
+                          itemBuilder: (context, index) {
+                            return SpecialityCard(
+                              imageUrl: diseases[index].imageUrl,
+                              numberDoctor: diseases[index].numberDoctor,
+                              nameDisease: diseases[index].diseaseName,
                             );
                           },
                         ),
@@ -175,7 +200,8 @@ class _HomePageState extends State<HomePage> {
                     ),
                     GestureDetector(
                       onTap: () {
-                        print('do something');
+                        Navigator.push(context,
+                            MaterialPageRoute(builder: (_) => ProfilePage()));
                       },
                       child: Row(
                         children: [
