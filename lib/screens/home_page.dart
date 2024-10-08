@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_doctor_nearby/components/appoinment_shadow_card.dart';
-import 'package:flutter_doctor_nearby/components/bottom_menu.dart';
 import 'package:flutter_doctor_nearby/components/doctor_card_item.dart';
 import 'package:flutter_doctor_nearby/components/icon_button.dart';
 import 'package:flutter_doctor_nearby/components/speciality_card.dart';
