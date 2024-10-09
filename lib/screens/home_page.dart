@@ -3,6 +3,7 @@ import 'package:flutter_doctor_nearby/components/appoinment_shadow_card.dart';
 import 'package:flutter_doctor_nearby/components/doctor_card_item.dart';
 import 'package:flutter_doctor_nearby/components/icon_button.dart';
 import 'package:flutter_doctor_nearby/components/speciality_card.dart';
+import 'package:flutter_doctor_nearby/screens/doctor_detailed_page.dart';
 import 'package:flutter_doctor_nearby/screens/profile_page.dart';
 import 'package:flutter_doctor_nearby/ui_values.dart';
 
@@ -14,7 +15,7 @@ class HomePage extends StatefulWidget {
 }
 
 class _HomePageState extends State<HomePage> {
-  bool isBookedAppoinment = false;
+  bool isBookedAppoinment = true;
   @override
   Widget build(BuildContext context) {
     Size size = MediaQuery.of(context).size;
@@ -102,10 +103,20 @@ class _HomePageState extends State<HomePage> {
                               itemCount: 10,
                               scrollDirection: Axis.horizontal,
                               itemBuilder: (context, builder) {
-                                return const Row(
+                                return Row(
                                   children: [
-                                    DoctorCardItem(),
-                                    SizedBox(width: 16),
+                                    DoctorCardItem(
+                                      nameDoctor: 'Stephen Strange',
+                                      speciality: 'Neurosurgeon',
+                                      avatarUrl: doctorStrangeRemoveBg,
+                                      onTap: () => Navigator.of(context).push(
+                                        MaterialPageRoute(
+                                          builder: (context) =>
+                                              const DoctorDetailedPage(),
+                                        ),
+                                      ),
+                                    ),
+                                    const SizedBox(width: 16),
                                   ],
                                 );
                               }),
