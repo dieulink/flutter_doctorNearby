@@ -5,16 +5,21 @@ import 'package:flutter_doctor_nearby/models/disease.dart';
 const primaryColor = Color(0xff0D53FC);
 const lightBlue = Color(0xff53A1FD);
 const extraLightBlue = Color(0xff96B5FF);
+const disableColor = Color(0xffEBF1F9);
 const lightGrey = Color(0xffCFD6E7);
 const greyColor = Color(0xffDEDEDE);
 const redColor = Color(0xffFE4E4E);
 const lightRed = Color(0xffE8505B);
 const greenColor = Color(0xff2FCB82);
 const greyContent = Color(0xffAAAAAA);
+const dayStrCalendarColor = Color(0xff8F8F8F);
 
 // images
 const avtSample = 'assets/images/avt_sample.jpg';
 const doctorAvt = 'assets/images/doctor_avt.png';
+const doctorStrangeAvt = 'assets/images/doctor_strange.jpg';
+const wandaAvt = 'assets/images/wanda_avt.jpg';
+const doctorStrangeRemoveBg = 'assets/images/doctor_strange_removebg.png';
 
 // icons
 const arrowDownIcon = 'assets/icons/arrow_down_icon.png';
@@ -39,11 +44,18 @@ const neurologyIcon = 'assets/icons/neurology_icon.png';
 const ophthalmologyIcon = 'assets/icons/ophthalmology_icon.png';
 const hematologyIcon = 'assets/icons/hematology_icon.png';
 const gynecologyIcon = 'assets/icons/gynecology_icon.png';
+const briefcaseIcon = 'assets/icons/briefcase_icon.png';
 
 // number
 const defaultMargin = 8.0;
 const defaulPagePadding = EdgeInsets.all(16.0);
 const borderRadius = 10.0;
+
+// text style
+const titleStyle = TextStyle(
+  fontWeight: FontWeight.bold,
+  fontSize: 20,
+);
 
 // fake data
 List<Disease> diseases = [
@@ -83,3 +95,34 @@ List<Disease> diseases = [
     numberDoctor: 9,
   ),
 ];
+
+List<DateTime> activeDateTimeList = [
+  DateTime(2024, 10, 10),
+  DateTime(2024, 10, 15),
+  DateTime(2024, 10, 9),
+  DateTime(2024, 10, 13),
+];
+
+List<DateTime> getFilteredDates() {
+    // Ngày bắt đầu và kết thúc
+    DateTime startDate = DateTime(2024, 10, 1); // 1 tháng 10, 2023
+    DateTime endDate = DateTime(2024, 10, 31); // 15 tháng 10, 2023
+
+    List<DateTime> dateList = [];
+
+    // Duyệt qua từng ngày từ startDate đến endDate
+    for (DateTime date = startDate;
+        date.isBefore(endDate) || date.isAtSameMomentAs(endDate);
+        date = date.add(Duration(days: 1))) {
+      // Kiểm tra nếu ngày đó không có trong danh sách loại trừ
+      if (!activeDateTimeList.any((excluded) =>
+          excluded.year == date.year &&
+          excluded.month == date.month &&
+          excluded.day == date.day)) {
+        dateList.add(date); // Thêm ngày đó vào danh sách
+      }
+    }
+    return dateList;
+}
+
+List<DateTime> unactiveDateTimeList = getFilteredDates();

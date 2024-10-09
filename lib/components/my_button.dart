@@ -7,6 +7,7 @@ class MyButton extends StatelessWidget {
   final String label;
   final Color textColor;
   final Color backgroundColor;
+  final double fontSize;
   final VoidCallback? onTap;
   const MyButton({
     super.key,
@@ -15,7 +16,7 @@ class MyButton extends StatelessWidget {
     required this.label,
     this.textColor = Colors.white,
     this.backgroundColor = lightBlue,
-    this.onTap,
+    this.onTap, this.fontSize = 14,
   });
 
   @override
@@ -34,6 +35,7 @@ class MyButton extends StatelessWidget {
             label,
             style: TextStyle(
               color: textColor,
+              fontSize: fontSize,
             ),
           ),
         ),
