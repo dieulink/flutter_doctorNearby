@@ -1,6 +1,7 @@
 import 'package:easy_date_timeline/easy_date_timeline.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_doctor_nearby/components/my_button.dart';
+import 'package:flutter_doctor_nearby/screens/make_an_appointment/date_time_page.dart';
 import 'package:flutter_doctor_nearby/ui_values.dart';
 import 'package:readmore/readmore.dart';
 
@@ -201,7 +202,11 @@ class _DoctorDetailedPageState extends State<DoctorDetailedPage> {
         color: Colors.white,
         shadowColor: Colors.grey,
         child: MyButton(
-          onTap: () {},
+          onTap: () => Navigator.of(context).push(
+            MaterialPageRoute(
+              builder: (context) => const DateTimePage(),
+            ),
+          ),
           label: 'Make an appointment',
           backgroundColor: primaryColor,
           fontSize: 16,

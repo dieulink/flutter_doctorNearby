@@ -96,33 +96,67 @@ List<Disease> diseases = [
   ),
 ];
 
-List<DateTime> activeDateTimeList = [
-  DateTime(2024, 10, 10),
-  DateTime(2024, 10, 15),
-  DateTime(2024, 10, 9),
-  DateTime(2024, 10, 13),
+List<String> months = [
+  'Jan',
+  'Feb',
+  'Mar',
+  'Apr',
+  'May',
+  'Jun',
+  'Jul',
+  'Aug',
+  'Sep',
+  'Oct',
+  'Nov',
+  'Dec'
 ];
 
-List<DateTime> getFilteredDates() {
-    // Ngày bắt đầu và kết thúc
-    DateTime startDate = DateTime(2024, 10, 1); // 1 tháng 10, 2023
-    DateTime endDate = DateTime(2024, 10, 31); // 15 tháng 10, 2023
+List<DateTime> activeDateTimeList = [
+  DateTime(2024, 10, 10),
+  DateTime(2024, 10, 13),
+  DateTime(2024, 10, 15),
+  DateTime(2024, 10, 20),
+];
 
-    List<DateTime> dateList = [];
+List<String> activeHours = [
+  '10:00 - 12:00',
+  '15:00 - 17:00',
+  '18:30 - 20:00'
+];
 
-    // Duyệt qua từng ngày từ startDate đến endDate
-    for (DateTime date = startDate;
-        date.isBefore(endDate) || date.isAtSameMomentAs(endDate);
-        date = date.add(Duration(days: 1))) {
-      // Kiểm tra nếu ngày đó không có trong danh sách loại trừ
-      if (!activeDateTimeList.any((excluded) =>
-          excluded.year == date.year &&
-          excluded.month == date.month &&
-          excluded.day == date.day)) {
-        dateList.add(date); // Thêm ngày đó vào danh sách
-      }
+// some logic functions
+List<DateTime> getFilteredDates(startDate, endDate) {
+  // DateTime startDate = DateTime(2024, 10, 1);
+  // DateTime endDate = DateTime(2024, 10, 31);
+
+  List<DateTime> dateList = [];
+
+  for (DateTime date = startDate;
+      date.isBefore(endDate) || date.isAtSameMomentAs(endDate);
+      date = date.add(const Duration(days: 1))) {
+    // Check and exclude free day
+    if (!activeDateTimeList.any((excluded) =>
+        excluded.year == date.year &&
+        excluded.month == date.month &&
+        excluded.day == date.day)) {
+      dateList.add(date);
     }
-    return dateList;
+  }
+  return dateList;
 }
 
-List<DateTime> unactiveDateTimeList = getFilteredDates();
+List<DateTime> getDateTimeList(List<DateTime> activeList) {
+  for (int i = 0; i < activeList.length; i++) {
+    if (DateTime.now().year > activeList[i].year ||
+        DateTime.now().month > activeList[i].month ||
+        DateTime.now().day > activeList[i].day) {
+          activeList.removeAt(i);
+        }
+  }
+  return activeList;
+}
+
+List<DateTime> unactiveDateTimeList = getFilteredDates(
+  DateTime(2024, 10, 1),
+  DateTime(2024, 10, 31),
+);

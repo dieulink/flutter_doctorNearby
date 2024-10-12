@@ -9,14 +9,17 @@ class MyButton extends StatelessWidget {
   final Color backgroundColor;
   final double fontSize;
   final VoidCallback? onTap;
-  const MyButton({
+  bool isChosen;
+  MyButton({
     super.key,
     this.width = 150,
     this.height = 50,
     required this.label,
     this.textColor = Colors.white,
     this.backgroundColor = lightBlue,
-    this.onTap, this.fontSize = 14,
+    this.onTap,
+    this.fontSize = 14,
+    this.isChosen = false,
   });
 
   @override
@@ -28,13 +31,13 @@ class MyButton extends StatelessWidget {
         height: height,
         decoration: BoxDecoration(
           borderRadius: BorderRadius.circular(5.0),
-          color: backgroundColor,
+          color: !isChosen ? backgroundColor : primaryColor,
         ),
         child: Center(
           child: Text(
             label,
             style: TextStyle(
-              color: textColor,
+              color: isChosen ? textColor : greyColor,
               fontSize: fontSize,
             ),
           ),
