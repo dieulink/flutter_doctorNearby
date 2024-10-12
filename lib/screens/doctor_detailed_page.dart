@@ -1,5 +1,6 @@
 import 'package:easy_date_timeline/easy_date_timeline.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_doctor_nearby/components/my_avatar.dart';
 import 'package:flutter_doctor_nearby/components/my_button.dart';
 import 'package:flutter_doctor_nearby/screens/make_an_appointment/date_time_page.dart';
 import 'package:flutter_doctor_nearby/ui_values.dart';
@@ -34,20 +35,7 @@ class _DoctorDetailedPageState extends State<DoctorDetailedPage> {
             children: [
               Row(
                 children: [
-                  Container(
-                    width: 120,
-                    height: 170,
-                    margin: const EdgeInsets.only(right: 16),
-                    decoration: BoxDecoration(
-                        borderRadius: BorderRadius.circular(borderRadius)),
-                    child: ClipRRect(
-                      borderRadius: BorderRadius.circular(borderRadius),
-                      child: Image.asset(
-                        doctorStrangeAvt,
-                        fit: BoxFit.cover,
-                      ),
-                    ),
-                  ),
+                  const MyAvatar(avatarUrl: doctorStrangeAvt),
                   Column(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     crossAxisAlignment: CrossAxisAlignment.start,
@@ -133,26 +121,13 @@ class _DoctorDetailedPageState extends State<DoctorDetailedPage> {
                   border: Border.all(color: greyContent),
                   borderRadius: BorderRadius.circular(borderRadius),
                 ),
-                child: Row(
+                child: const Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
                     Row(
                       children: [
-                        Container(
-                          width: 50,
-                          height: 50,
-                          decoration: BoxDecoration(
-                              borderRadius: BorderRadius.circular(5)),
-                          child: ClipRRect(
-                            borderRadius: BorderRadius.circular(5),
-                            child: Image.asset(
-                              wandaAvt,
-                              fit: BoxFit.contain,
-                            ),
-                          ),
-                        ),
-                        const SizedBox(width: 10),
-                        const Column(
+                        MyAvatar(avatarUrl: wandaAvt, width: 55, height: 55,),
+                        Column(
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
                             Text(
@@ -217,7 +192,7 @@ class _DoctorDetailedPageState extends State<DoctorDetailedPage> {
 
   EasyInfiniteDateTimeLine _buildCalendar() {
     return EasyInfiniteDateTimeLine(
-      firstDate: DateTime.now(),
+      firstDate: getDateTimeList(activeDateTimeList)[0],
       lastDate: DateTime(
           DateTime.now().year, DateTime.now().month, DateTime.now().day + 8),
       disabledDates: unactiveDateTimeList,
@@ -327,3 +302,5 @@ class _DoctorDetailedPageState extends State<DoctorDetailedPage> {
     );
   }
 }
+
+
