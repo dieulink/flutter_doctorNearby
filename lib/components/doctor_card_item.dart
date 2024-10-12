@@ -6,6 +6,7 @@ class DoctorCardItem extends StatelessWidget {
   final String avatarUrl;
   final String nameDoctor;
   final String speciality;
+  final bool isJustInfo;
   final VoidCallback? onTap;
   const DoctorCardItem({
     super.key,
@@ -13,6 +14,7 @@ class DoctorCardItem extends StatelessWidget {
     required this.avatarUrl,
     required this.nameDoctor,
     required this.speciality,
+    this.isJustInfo = false,
   });
 
   @override
@@ -21,7 +23,7 @@ class DoctorCardItem extends StatelessWidget {
     return GestureDetector(
       onTap: onTap,
       child: Container(
-        width: width * 0.8,
+        width: isJustInfo ? width : width * 0.8,
         padding: const EdgeInsets.fromLTRB(
           defaultMargin,
           defaultMargin,
@@ -41,7 +43,9 @@ class DoctorCardItem extends StatelessWidget {
               width: 72,
               height: 108,
               padding: const EdgeInsets.only(top: 2),
-              decoration: BoxDecoration(borderRadius: BorderRadius.circular(12)),
+              decoration: BoxDecoration(
+                borderRadius: BorderRadius.circular(12),
+              ),
               child: ClipRRect(
                 borderRadius: BorderRadius.circular(12),
                 child: Image.asset(
@@ -50,45 +54,54 @@ class DoctorCardItem extends StatelessWidget {
                 ),
               ),
             ),
-            const SizedBox(width: 10),
+            SizedBox(width: !isJustInfo ? 10 : 15),
             Expanded(
               child: Padding(
                 padding: const EdgeInsets.only(top: 10.0),
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
+                  mainAxisAlignment: MainAxisAlignment.center,
                   children: [
                     Text(
                       nameDoctor,
-                      style: const TextStyle(
-                          fontWeight: FontWeight.bold, fontSize: 16),
+                      style: TextStyle(
+                        fontWeight: FontWeight.bold,
+                        fontSize: !isJustInfo ? 16 : 18,
+                      ),
                     ),
                     Text(
                       speciality,
-                      style: const TextStyle(fontSize: 15, color: greyContent),
+                      style: TextStyle(
+                        fontSize: !isJustInfo ? 15 : 17,
+                        color: greyContent,
+                      ),
                     ),
                     const SizedBox(height: 15),
-                    Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      children: [
-                        Row(
-                          children: [
-                            SizedBox(
-                                width: 20,
-                                height: 20,
-                                child: Image.asset(starIcon)),
-                            const Text(
-                              '4.5',
-                              style: TextStyle(color: greyContent),
-                            ),
-                          ],
-                        ),
-                        MyButton(
-                          width: 70,
-                          height: 35,
-                          label: 'Status',
-                          onTap: () {},
-                        ),
-                      ],
+                    Visibility(
+                      visible: !isJustInfo,
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        children: [
+                          Row(
+                            children: [
+                              SizedBox(
+                                  width: 20,
+                                  height: 20,
+                                  child: Image.asset(starIcon)),
+                              const Text(
+                                '4.5',
+                                style: TextStyle(color: greyContent),
+                              ),
+                            ],
+                          ),
+                          MyButton(
+                            width: 70,
+                            height: 35,
+                            label: 'Status',
+                            onTap: () {},
+                          ),
+                        ],
+                      ),
                     ),
                   ],
                 ),
