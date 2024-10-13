@@ -45,6 +45,9 @@ const ophthalmologyIcon = 'assets/icons/ophthalmology_icon.png';
 const hematologyIcon = 'assets/icons/hematology_icon.png';
 const gynecologyIcon = 'assets/icons/gynecology_icon.png';
 const briefcaseIcon = 'assets/icons/briefcase_icon.png';
+const mailIcon = 'assets/icons/mail_icon.png';
+const phoneIcon = 'assets/icons/phone_icon.png';
+const tickSquareIcon = 'assets/icons/tick_square.png';
 
 // number
 const defaultMargin = 8.0;
@@ -55,6 +58,18 @@ const borderRadius = 10.0;
 const titleStyle = TextStyle(
   fontWeight: FontWeight.bold,
   fontSize: 20,
+);
+
+const titleCardStyle = TextStyle(
+  fontSize: 14,
+  fontWeight: FontWeight.bold,
+  color: Colors.white,
+);
+
+const subTitleStyle = TextStyle(
+  fontSize: 14,
+  fontWeight: FontWeight.bold,
+  color: greyContent,
 );
 
 // fake data
@@ -118,11 +133,7 @@ List<DateTime> activeDateTimeList = [
   DateTime(2024, 10, 20),
 ];
 
-List<String> activeHours = [
-  '10:00 - 12:00',
-  '15:00 - 17:00',
-  '18:30 - 20:00'
-];
+List<String> activeHours = ['10:00 - 12:00', '15:00 - 17:00', '18:30 - 20:00'];
 
 // some logic functions
 List<DateTime> getFilteredDates(startDate, endDate) {
@@ -150,8 +161,8 @@ List<DateTime> getDateTimeList(List<DateTime> activeList) {
     if (DateTime.now().year > activeList[i].year ||
         DateTime.now().month > activeList[i].month ||
         DateTime.now().day > activeList[i].day) {
-          activeList.removeAt(i);
-        }
+      activeList.removeAt(i);
+    }
   }
   return activeList;
 }
