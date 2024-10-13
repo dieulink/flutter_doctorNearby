@@ -57,6 +57,7 @@ const blackBellIcon = 'assets/icons/bell_black_icon.png';
 const securityIcon = 'assets/icons/security_icon.png';
 const helpIcon = 'assets/icons/help_icon.png';
 const aboutIcon = 'assets/icons/about_icon.png';
+const editIcon = 'assets/icons/edit_icon.png';
 
 // number
 const defaultMargin = 8.0;

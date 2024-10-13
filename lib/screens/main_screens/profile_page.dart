@@ -1,7 +1,7 @@
 import 'dart:math';
 
 import 'package:flutter/material.dart';
-import 'package:flutter_doctor_nearby/screens/main_screens/edit_information.dart';
+import 'package:flutter_doctor_nearby/screens/edit_information.dart';
 import 'package:flutter_doctor_nearby/screens/main_screens/notification_page.dart';
 import 'package:flutter_doctor_nearby/ui_values.dart';
 
