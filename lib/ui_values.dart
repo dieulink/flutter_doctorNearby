@@ -50,6 +50,13 @@ const briefcaseIcon = 'assets/icons/briefcase_icon.png';
 const mailIcon = 'assets/icons/mail_icon.png';
 const phoneIcon = 'assets/icons/phone_icon.png';
 const tickSquareIcon = 'assets/icons/tick_square.png';
+const logOutIcon = 'assets/icons/log_out_icon.png';
+const personIcon = 'assets/icons/person_icon.png';
+const documentIcon = 'assets/icons/document_icon.png';
+const blackBellIcon = 'assets/icons/bell_black_icon.png';
+const securityIcon = 'assets/icons/security_icon.png';
+const helpIcon = 'assets/icons/help_icon.png';
+const aboutIcon = 'assets/icons/about_icon.png';
 
 // number
 const defaultMargin = 8.0;
