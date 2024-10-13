@@ -8,6 +8,8 @@ class DoctorCardItem extends StatelessWidget {
   final String speciality;
   final bool isJustInfo;
   final VoidCallback? onTap;
+  final Widget? customAfterInfoLine;
+  final double? width;
   const DoctorCardItem({
     super.key,
     this.onTap,
@@ -15,15 +17,17 @@ class DoctorCardItem extends StatelessWidget {
     required this.nameDoctor,
     required this.speciality,
     this.isJustInfo = false,
+    this.customAfterInfoLine,
+    this.width,
   });
 
   @override
   Widget build(BuildContext context) {
-    final double width = MediaQuery.of(context).size.width;
+    final double widthSize = MediaQuery.of(context).size.width;
     return GestureDetector(
       onTap: onTap,
       child: Container(
-        width: isJustInfo ? width : width * 0.8,
+        width: width ?? widthSize * 0.8,
         padding: const EdgeInsets.fromLTRB(
           defaultMargin,
           defaultMargin,
@@ -44,13 +48,13 @@ class DoctorCardItem extends StatelessWidget {
               height: 108,
               padding: const EdgeInsets.only(top: 2),
               decoration: BoxDecoration(
-                borderRadius: BorderRadius.circular(12),
+                borderRadius: BorderRadius.circular(8),
               ),
               child: ClipRRect(
-                borderRadius: BorderRadius.circular(12),
+                borderRadius: BorderRadius.circular(8),
                 child: Image.asset(
                   avatarUrl,
-                  fit: BoxFit.contain,
+                  fit: BoxFit.cover,
                 ),
               ),
             ),
@@ -77,32 +81,34 @@ class DoctorCardItem extends StatelessWidget {
                       ),
                     ),
                     const SizedBox(height: 15),
-                    Visibility(
-                      visible: !isJustInfo,
-                      child: Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                        children: [
-                          Row(
-                            children: [
-                              SizedBox(
-                                  width: 20,
-                                  height: 20,
-                                  child: Image.asset(starIcon)),
-                              const Text(
-                                '4.5',
-                                style: TextStyle(color: greyContent),
-                              ),
-                            ],
-                          ),
-                          MyButton(
-                            width: 70,
-                            height: 35,
-                            label: 'Status',
-                            onTap: () {},
-                          ),
-                        ],
-                      ),
-                    ),
+                    customAfterInfoLine == null
+                        ? Visibility(
+                            visible: !isJustInfo,
+                            child: Row(
+                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                              children: [
+                                Row(
+                                  children: [
+                                    SizedBox(
+                                        width: 20,
+                                        height: 20,
+                                        child: Image.asset(starIcon)),
+                                    const Text(
+                                      '4.5',
+                                      style: TextStyle(color: greyContent),
+                                    ),
+                                  ],
+                                ),
+                                MyButton(
+                                  width: 70,
+                                  height: 35,
+                                  label: 'Status',
+                                  onTap: () {},
+                                ),
+                              ],
+                            ),
+                          )
+                        : customAfterInfoLine!,
                   ],
                 ),
               ),
