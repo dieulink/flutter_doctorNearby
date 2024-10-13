@@ -1,8 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:firebase_core/firebase_core.dart';
+import 'package:flutter_doctor_nearby/components/bottom_menu.dart';
 import 'package:flutter_doctor_nearby/firebase_options.dart';
-import 'package:flutter_doctor_nearby/screens/main_screens/favorite_page.dart';
-import 'package:flutter_doctor_nearby/screens/make_an_appointment/appointment_summary.dart';
 import 'package:flutter_doctor_nearby/ui_values.dart';
 
 void main() async {
@@ -23,7 +22,7 @@ class MainApp extends StatelessWidget {
         fontFamily: 'Inter',
         useMaterial3: true,
       ),
-      home: const FavoritePage(),
+      home: const MyBottomMenu(),
     );
   }
 }

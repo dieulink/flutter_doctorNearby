@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_doctor_nearby/models/disease.dart';
+import 'package:flutter_doctor_nearby/models/doctor.dart';
 
 // color
 const primaryColor = Color(0xff0D53FC);
@@ -20,6 +21,7 @@ const doctorAvt = 'assets/images/doctor_avt.png';
 const doctorStrangeAvt = 'assets/images/doctor_strange.jpg';
 const wandaAvt = 'assets/images/wanda_avt.jpg';
 const doctorStrangeRemoveBg = 'assets/images/doctor_strange_removebg.png';
+const edwardAvt = 'assets/images/edward_avt.jpg';
 
 // icons
 const arrowDownIcon = 'assets/icons/arrow_down_icon.png';
@@ -134,6 +136,27 @@ List<DateTime> activeDateTimeList = [
 ];
 
 List<String> activeHours = ['10:00 - 12:00', '15:00 - 17:00', '18:30 - 20:00'];
+
+List<Doctor> doctorList = [
+  Doctor(
+    imageUrl: doctorStrangeAvt,
+    doctorName: 'Stephen Strange',
+    speciality: 'Neurosurgeon',
+    rating: 5.0,
+  ),
+  Doctor(
+    imageUrl: doctorAvt,
+    doctorName: 'Arus Elim',
+    speciality: 'Hepatologist',
+    rating: 4.8,
+  ),
+  Doctor(
+    imageUrl: edwardAvt,
+    doctorName: 'Edward Cullen',
+    speciality: 'Desmatologist',
+    rating: 4.5,
+  ),
+];
 
 // some logic functions
 List<DateTime> getFilteredDates(startDate, endDate) {
