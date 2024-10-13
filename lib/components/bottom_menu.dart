@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_doctor_nearby/screens/appointment_page.dart';
-import 'package:flutter_doctor_nearby/screens/chat_page.dart';
-import 'package:flutter_doctor_nearby/screens/favorite_page.dart';
-import 'package:flutter_doctor_nearby/screens/home_page.dart';
-import 'package:flutter_doctor_nearby/screens/profile_page.dart';
+import 'package:flutter_doctor_nearby/screens/main_screens/appointment_page.dart';
+import 'package:flutter_doctor_nearby/screens/main_screens/chat_page.dart';
+import 'package:flutter_doctor_nearby/screens/main_screens/favorite_page.dart';
+import 'package:flutter_doctor_nearby/screens/main_screens/home_page.dart';
+import 'package:flutter_doctor_nearby/screens/main_screens/profile_page.dart';
 import 'package:flutter_doctor_nearby/ui_values.dart';
 
 class MyBottomMenu extends StatefulWidget {

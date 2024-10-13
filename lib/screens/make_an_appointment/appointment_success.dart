@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_doctor_nearby/components/bottom_menu.dart';
 import 'package:flutter_doctor_nearby/components/my_button.dart';
-import 'package:flutter_doctor_nearby/screens/home_page.dart';
 import 'package:flutter_doctor_nearby/ui_values.dart';
 
 class AppointmentSuccess extends StatelessWidget {
