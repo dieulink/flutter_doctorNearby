@@ -4,7 +4,7 @@ import 'package:flutter_doctor_nearby/components/doctor_card_item.dart';
 import 'package:flutter_doctor_nearby/components/icon_button.dart';
 import 'package:flutter_doctor_nearby/components/speciality_card.dart';
 import 'package:flutter_doctor_nearby/screens/doctor_detailed_page.dart';
-import 'package:flutter_doctor_nearby/screens/profile_page.dart';
+import 'package:flutter_doctor_nearby/screens/main_screens/profile_page.dart';
 import 'package:flutter_doctor_nearby/ui_values.dart';
 
 class HomePage extends StatefulWidget {

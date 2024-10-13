@@ -6,6 +6,7 @@ import 'package:flutter_doctor_nearby/login/forgotPassword1_page.dart';
 import 'package:flutter_doctor_nearby/login/forgotPassword2_page.dart';
 import 'package:flutter_doctor_nearby/login/forgotPassword3_page.dart';
 import 'package:flutter_doctor_nearby/screens/doctor_detailed_page.dart';
+import 'package:flutter_doctor_nearby/screens/main_screens/profile_page.dart';
 import 'package:flutter_doctor_nearby/ui_values.dart';
 import 'package:flutter_doctor_nearby/login/login_page.dart';
 import 'package:flutter_doctor_nearby/onBoarding/onBoarding_page.dart';
