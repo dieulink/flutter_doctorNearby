@@ -113,19 +113,59 @@ class AppointmentSuccess extends StatelessWidget {
                       width: double.infinity,
                       color: Colors.black,
                     ),
-                    const Center(
-                      child: Padding(
-                        padding: EdgeInsets.symmetric(vertical: 20.0),
-                        child: Text(
-                          'Date and Time',
-                          style: TextStyle(
-                            fontSize: 16,
-                            color: Colors.white,
-                            fontWeight: FontWeight.bold,
+                    Padding(
+                      padding: const EdgeInsets.all(16.0),
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          Row(
+                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                            children: [
+                              const Text(
+                                'Date',
+                                style: titleCardStyle,
+                              ),
+                              Text('15-10-2024',
+                                  style: titleCardStyle.copyWith(
+                                      fontWeight: FontWeight.normal)),
+                            ],
                           ),
-                        ),
+                          const SizedBox(height: 5),
+                          Row(
+                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                            children: [
+                              const Text(
+                                'Time',
+                                style: titleCardStyle,
+                              ),
+                              Text('10:00 - 12:00',
+                                  style: titleCardStyle.copyWith(
+                                      fontWeight: FontWeight.normal)),
+                            ],
+                          ),
+                          const SizedBox(height: 5),
+                          Row(
+                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                              const Text(
+                                'Address',
+                                style: titleCardStyle,
+                              ),
+                              const SizedBox(width: 8),
+                              Expanded(
+                                child: Text(
+                                  "97 Man Thien, District 9, Thu Duc City",
+                                  textAlign: TextAlign.right,
+                                  style: titleCardStyle.copyWith(
+                                      fontWeight: FontWeight.normal),
+                                ),
+                              ),
+                            ],
+                          ),
+                        ],
                       ),
-                    )
+                    ),
                   ],
                 ),
               ),
