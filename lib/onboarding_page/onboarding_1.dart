@@ -1,23 +1,30 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_doctor_nearby/login/forgotPassword2_page.dart';
-import 'package:flutter_doctor_nearby/onBoarding/onBoarding_page2.dart';
-import 'package:flutter_doctor_nearby/screens/home_page.dart';
+import 'package:flutter_doctor_nearby/login/login_page.dart';
+import 'package:flutter_doctor_nearby/onboarding_page/onboarding_page2.dart';
 import 'package:flutter_doctor_nearby/ui_values.dart';
 
-class Forgotpassword1Page extends StatelessWidget {
-  const Forgotpassword1Page({super.key});
+class OnboardingPage extends StatelessWidget {
+  const OnboardingPage({super.key});
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       body: Padding(
-        padding: const EdgeInsets.fromLTRB(11.0, 100.0, 11.0, 11.0),
-        child: ListView(
+        padding: const EdgeInsets.fromLTRB(11.0, 108.0, 11.0, 11.0),
+        child: Column(
+          //mainAxisAlignment: MainAxisAlignment.center,
+          //crossAxisAlignment: CrossAxisAlignment.start,
           children: [
+            Image.asset(
+              'assets/images/onBoarding1.png',
+              width: 353,
+              height: 272,
+            ),
+            const SizedBox(height: 30),
             Align(
               alignment: Alignment.centerLeft,
               child: const Text(
-                'Check your email',
+                'Welcome',
                 style: TextStyle(
                   fontSize: 32,
                   fontWeight: FontWeight.bold,
@@ -28,35 +35,11 @@ class Forgotpassword1Page extends StatelessWidget {
             Align(
               alignment: Alignment.centerLeft,
               child: const Text(
-                'Enter the email associated with your account and we’ll send an email with instructios to reset your password.',
+                'Your health is our priority. Learn more how it works.',
                 style: TextStyle(fontSize: 16, color: greyContent),
               ),
             ),
-            const SizedBox(height: 50),
-            TextField(
-              decoration: InputDecoration(
-                labelText: 'Email',
-                hintText: 'Enter your email address',
-                border: OutlineInputBorder(),
-                prefixIcon: Icon(
-                  Icons.email_outlined,
-                  color: greyColor,
-                ),
-                labelStyle: TextStyle(color: greyColor),
-                hintStyle: TextStyle(color: greyColor),
-                focusedBorder: OutlineInputBorder(
-                  borderRadius: BorderRadius.circular(10),
-                  borderSide: BorderSide(color: primaryColor),
-                ),
-                enabledBorder: OutlineInputBorder(
-                  borderRadius: BorderRadius.circular(10),
-                  borderSide: BorderSide(color: Colors.grey),
-                ),
-              ),
-            ),
-            const SizedBox(
-              height: 30,
-            ),
+            const SizedBox(height: 80),
             Container(
               height: 50,
               width: double.infinity,
@@ -71,7 +54,8 @@ class Forgotpassword1Page extends StatelessWidget {
                     context,
                     PageRouteBuilder(
                       transitionDuration: Duration(milliseconds: 500),
-                      pageBuilder: (context, animation, secondaryAnimation) => Forgotpassword2Page(),
+                      pageBuilder: (context, animation, secondaryAnimation) =>
+                          OnboardingPage2(),
                       transitionsBuilder:
                           (context, animation, secondaryAnimation, child) {
                         const begin = Offset(1.0, 0.0);
@@ -90,7 +74,29 @@ class Forgotpassword1Page extends StatelessWidget {
                     ),
                   );
                 },
-                child: const Text('Send Instructions'),
+                child: const Text('Next'),
+              ),
+            ),
+            const SizedBox(height: 10),
+            Container(
+              height: 50,
+              width: double.infinity,
+              child: TextButton(
+                style: TextButton.styleFrom(
+                    shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(10))),
+                onPressed: () {
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                      builder: (context) => LoginTab(),
+                    ),
+                  );
+                },
+                child: const Text(
+                  'Skip',
+                  style: TextStyle(color: primaryColor),
+                ),
               ),
             ),
           ],

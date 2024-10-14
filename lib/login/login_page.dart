@@ -1,11 +1,11 @@
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_doctor_nearby/login/forgotPassword1_page.dart';
-import 'package:flutter_doctor_nearby/screens/home_page.dart';
+import 'package:flutter_doctor_nearby/login/forgot_password_1.dart';
+import 'package:flutter_doctor_nearby/screens/main_screens/home_page.dart';
 import 'package:flutter_doctor_nearby/ui_values.dart';
 
-class loginPage extends StatelessWidget {
-  const loginPage({super.key});
+class LoginPage extends StatelessWidget {
+  const LoginPage({super.key});
 
   @override
   Widget build(BuildContext context) {

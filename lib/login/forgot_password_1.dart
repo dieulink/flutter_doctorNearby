@@ -1,29 +1,21 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_doctor_nearby/screens/home_page.dart';
+import 'package:flutter_doctor_nearby/login/forgot_password_2.dart';
 import 'package:flutter_doctor_nearby/ui_values.dart';
 
-class OnboardingPage3 extends StatelessWidget {
-  const OnboardingPage3({super.key});
+class Forgotpassword1Page extends StatelessWidget {
+  const Forgotpassword1Page({super.key});
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       body: Padding(
-        padding: const EdgeInsets.fromLTRB(11.0, 108.0, 11.0, 11.0),
-        child: Column(
-          //mainAxisAlignment: MainAxisAlignment.center,
-          //crossAxisAlignment: CrossAxisAlignment.start,
+        padding: const EdgeInsets.fromLTRB(11.0, 100.0, 11.0, 11.0),
+        child: ListView(
           children: [
-            Image.asset(
-              'assets/images/onBoarding3.png',
-              width: 353,
-              height: 272,
-            ),
-            const SizedBox(height: 30),
             Align(
               alignment: Alignment.centerLeft,
               child: const Text(
-                'Start a chat',
+                'Check your email',
                 style: TextStyle(
                   fontSize: 32,
                   fontWeight: FontWeight.bold,
@@ -34,11 +26,35 @@ class OnboardingPage3 extends StatelessWidget {
             Align(
               alignment: Alignment.centerLeft,
               child: const Text(
-                'Online chat consultation, make an appointment with the doctor of your choice.',
+                'Enter the email associated with your account and we’ll send an email with instructios to reset your password.',
                 style: TextStyle(fontSize: 16, color: greyContent),
               ),
             ),
-            const SizedBox(height: 80),
+            const SizedBox(height: 50),
+            TextField(
+              decoration: InputDecoration(
+                labelText: 'Email',
+                hintText: 'Enter your email address',
+                border: OutlineInputBorder(),
+                prefixIcon: Icon(
+                  Icons.email_outlined,
+                  color: greyColor,
+                ),
+                labelStyle: TextStyle(color: greyColor),
+                hintStyle: TextStyle(color: greyColor),
+                focusedBorder: OutlineInputBorder(
+                  borderRadius: BorderRadius.circular(10),
+                  borderSide: BorderSide(color: primaryColor),
+                ),
+                enabledBorder: OutlineInputBorder(
+                  borderRadius: BorderRadius.circular(10),
+                  borderSide: BorderSide(color: Colors.grey),
+                ),
+              ),
+            ),
+            const SizedBox(
+              height: 30,
+            ),
             Container(
               height: 50,
               width: double.infinity,
@@ -53,8 +69,7 @@ class OnboardingPage3 extends StatelessWidget {
                     context,
                     PageRouteBuilder(
                       transitionDuration: Duration(milliseconds: 500),
-                      pageBuilder: (context, animation, secondaryAnimation) =>
-                          HomePage(),
+                      pageBuilder: (context, animation, secondaryAnimation) => Forgotpassword2Page(),
                       transitionsBuilder:
                           (context, animation, secondaryAnimation, child) {
                         const begin = Offset(1.0, 0.0);
@@ -73,10 +88,9 @@ class OnboardingPage3 extends StatelessWidget {
                     ),
                   );
                 },
-                child: const Text('Lets get started'),
+                child: const Text('Send Instructions'),
               ),
             ),
-            const SizedBox(height: 10),
           ],
         ),
       ),

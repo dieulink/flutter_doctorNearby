@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_doctor_nearby/login/forgotPassword3_page.dart';
-import 'package:flutter_doctor_nearby/onBoarding/onBoarding_page2.dart';
-import 'package:flutter_doctor_nearby/screens/home_page.dart';
+import 'package:flutter_doctor_nearby/login/forgot_password_3.dart';
+import 'package:flutter_doctor_nearby/onboarding_page/onboarding_page2.dart';
 import 'package:flutter_doctor_nearby/ui_values.dart';
 
 class Forgotpassword2Page extends StatelessWidget {
@@ -46,9 +45,9 @@ class Forgotpassword2Page extends StatelessWidget {
                   Navigator.push(
                     context,
                     PageRouteBuilder(
-                      transitionDuration: Duration(milliseconds: 500),
+                      transitionDuration: const Duration(milliseconds: 500),
                       pageBuilder: (context, animation, secondaryAnimation) =>
-                          OnboardingPage2(),
+                          const OnboardingPage2(),
                       transitionsBuilder:
                           (context, animation, secondaryAnimation, child) {
                         const begin = Offset(1.0, 0.0);

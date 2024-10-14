@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_doctor_nearby/onBoarding/onBoarding_page3.dart';
-import 'package:flutter_doctor_nearby/screens/home_page.dart';
+import 'package:flutter_doctor_nearby/onboarding_page/onboarding_page3.dart';
+import 'package:flutter_doctor_nearby/screens/main_screens/home_page.dart';
 import 'package:flutter_doctor_nearby/ui_values.dart';
 
 class OnboardingPage2 extends StatelessWidget {
@@ -53,7 +53,7 @@ class OnboardingPage2 extends StatelessWidget {
                   Navigator.push(
                     context,
                     PageRouteBuilder(
-                      transitionDuration: Duration(milliseconds: 500),
+                      transitionDuration: const Duration(milliseconds: 500),
                       pageBuilder: (context, animation, secondaryAnimation) =>
                           const OnboardingPage3(),
                       transitionsBuilder:
