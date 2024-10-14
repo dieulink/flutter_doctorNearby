@@ -326,6 +326,7 @@ class RegisterTab extends StatelessWidget {
                             .chain(CurveTween(curve: curve));
                         var offsetAnimation = animation.drive(tween);
 
+
                         return SlideTransition(
                           position: offsetAnimation,
                           child: child,

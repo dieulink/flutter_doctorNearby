@@ -108,6 +108,7 @@ class Forgotpassword1Page extends StatelessWidget {
                       transitionDuration: Duration(milliseconds: 500),
                       pageBuilder: (context, animation, secondaryAnimation) =>
                           Forgotpassword2Page(),
+
                       transitionsBuilder:
                           (context, animation, secondaryAnimation, child) {
                         const begin = Offset(1.0, 0.0);

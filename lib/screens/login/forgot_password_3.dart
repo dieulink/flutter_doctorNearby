@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_doctor_nearby/components/bottom_menu.dart';
 import 'package:flutter_doctor_nearby/screens/login/forgot_password_2.dart';
+import 'package:flutter_doctor_nearby/screens/main_screens/home_page.dart';
 import 'package:flutter_doctor_nearby/ui_values.dart';
 
 class Forgotpassword3Page extends StatelessWidget {
@@ -130,6 +131,7 @@ class Forgotpassword3Page extends StatelessWidget {
                       transitionDuration: Duration(milliseconds: 500),
                       pageBuilder: (context, animation, secondaryAnimation) =>
                           const MyBottomMenu(),
+
                       transitionsBuilder:
                           (context, animation, secondaryAnimation, child) {
                         const begin = Offset(1.0, 0.0);

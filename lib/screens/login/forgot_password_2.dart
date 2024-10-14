@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_doctor_nearby/screens/login/forgot_password_1.dart';
 import 'package:flutter_doctor_nearby/screens/login/forgot_password_3.dart';
+import 'package:flutter_doctor_nearby/screens/login/forgot_password_3.dart';
+import 'package:flutter_doctor_nearby/screens/onboarding_page/onboarding_page2.dart';
 import 'package:flutter_doctor_nearby/ui_values.dart';
 
 class Forgotpassword2Page extends StatelessWidget {
