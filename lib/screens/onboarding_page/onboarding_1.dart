@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_doctor_nearby/login/login_page.dart';
-import 'package:flutter_doctor_nearby/onboarding_page/onboarding_page2.dart';
+import 'package:flutter_doctor_nearby/screens/login/login_page.dart';
+import 'package:flutter_doctor_nearby/screens/onboarding_page/onboarding_page2.dart';
 import 'package:flutter_doctor_nearby/ui_values.dart';
 
 class OnboardingPage extends StatelessWidget {
@@ -89,7 +89,7 @@ class OnboardingPage extends StatelessWidget {
                   Navigator.push(
                     context,
                     MaterialPageRoute(
-                      builder: (context) => LoginTab(),
+                      builder: (context) => const LoginPage(),
                     ),
                   );
                 },

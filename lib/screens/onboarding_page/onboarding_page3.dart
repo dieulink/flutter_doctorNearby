@@ -1,10 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_doctor_nearby/onboarding_page/onboarding_page3.dart';
-import 'package:flutter_doctor_nearby/screens/main_screens/home_page.dart';
+import 'package:flutter_doctor_nearby/screens/login/login_page.dart';
 import 'package:flutter_doctor_nearby/ui_values.dart';
 
-class OnboardingPage2 extends StatelessWidget {
-  const OnboardingPage2({super.key});
+class OnboardingPage3 extends StatelessWidget {
+  const OnboardingPage3({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -16,7 +15,7 @@ class OnboardingPage2 extends StatelessWidget {
           //crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             Image.asset(
-              'assets/images/onBoarding2.png',
+              'assets/images/onBoarding3.png',
               width: 353,
               height: 272,
             ),
@@ -24,7 +23,7 @@ class OnboardingPage2 extends StatelessWidget {
             Align(
               alignment: Alignment.centerLeft,
               child: const Text(
-                'Find doctor near you',
+                'Start a chat',
                 style: TextStyle(
                   fontSize: 32,
                   fontWeight: FontWeight.bold,
@@ -35,7 +34,7 @@ class OnboardingPage2 extends StatelessWidget {
             Align(
               alignment: Alignment.centerLeft,
               child: const Text(
-                'Find trusted general practitioners and specialists near you.',
+                'Online chat consultation, make an appointment with the doctor of your choice.',
                 style: TextStyle(fontSize: 16, color: greyContent),
               ),
             ),
@@ -55,7 +54,7 @@ class OnboardingPage2 extends StatelessWidget {
                     PageRouteBuilder(
                       transitionDuration: const Duration(milliseconds: 500),
                       pageBuilder: (context, animation, secondaryAnimation) =>
-                          const OnboardingPage3(),
+                          const LoginPage(),
                       transitionsBuilder:
                           (context, animation, secondaryAnimation, child) {
                         const begin = Offset(1.0, 0.0);
@@ -74,31 +73,10 @@ class OnboardingPage2 extends StatelessWidget {
                     ),
                   );
                 },
-                child: const Text('Next'),
+                child: const Text('Lets get started'),
               ),
             ),
             const SizedBox(height: 10),
-            Container(
-              height: 50,
-              width: double.infinity,
-              child: TextButton(
-                style: TextButton.styleFrom(
-                    shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(10))),
-                onPressed: () {
-                  Navigator.push(
-                    context,
-                    MaterialPageRoute(
-                      builder: (context) => const HomePage(),
-                    ),
-                  );
-                },
-                child: const Text(
-                  'Skip',
-                  style: TextStyle(color: primaryColor),
-                ),
-              ),
-            ),
           ],
         ),
       ),

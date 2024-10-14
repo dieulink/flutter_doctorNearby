@@ -1,22 +1,30 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_doctor_nearby/login/forgot_password_3.dart';
-import 'package:flutter_doctor_nearby/onboarding_page/onboarding_page2.dart';
+import 'package:flutter_doctor_nearby/screens/main_screens/home_page.dart';
+import 'package:flutter_doctor_nearby/screens/onboarding_page/onBoarding_page3.dart';
 import 'package:flutter_doctor_nearby/ui_values.dart';
 
-class Forgotpassword2Page extends StatelessWidget {
-  const Forgotpassword2Page({super.key});
+class OnboardingPage2 extends StatelessWidget {
+  const OnboardingPage2({super.key});
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       body: Padding(
-        padding: const EdgeInsets.fromLTRB(11.0, 100.0, 11.0, 11.0),
-        child: ListView(
+        padding: const EdgeInsets.fromLTRB(11.0, 108.0, 11.0, 11.0),
+        child: Column(
+          //mainAxisAlignment: MainAxisAlignment.center,
+          //crossAxisAlignment: CrossAxisAlignment.start,
           children: [
+            Image.asset(
+              'assets/images/onBoarding2.png',
+              width: 353,
+              height: 272,
+            ),
+            const SizedBox(height: 30),
             Align(
               alignment: Alignment.centerLeft,
               child: const Text(
-                'Check your email',
+                'Find doctor near you',
                 style: TextStyle(
                   fontSize: 32,
                   fontWeight: FontWeight.bold,
@@ -27,11 +35,11 @@ class Forgotpassword2Page extends StatelessWidget {
             Align(
               alignment: Alignment.centerLeft,
               child: const Text(
-                'We have sent a password recovery instructions to your email.',
+                'Find trusted general practitioners and specialists near you.',
                 style: TextStyle(fontSize: 16, color: greyContent),
               ),
             ),
-            const SizedBox(height: 50),
+            const SizedBox(height: 80),
             Container(
               height: 50,
               width: double.infinity,
@@ -47,7 +55,7 @@ class Forgotpassword2Page extends StatelessWidget {
                     PageRouteBuilder(
                       transitionDuration: const Duration(milliseconds: 500),
                       pageBuilder: (context, animation, secondaryAnimation) =>
-                          const OnboardingPage2(),
+                          const OnboardingPage3(),
                       transitionsBuilder:
                           (context, animation, secondaryAnimation, child) {
                         const begin = Offset(1.0, 0.0);
@@ -66,7 +74,7 @@ class Forgotpassword2Page extends StatelessWidget {
                     ),
                   );
                 },
-                child: const Text('Open my email'),
+                child: const Text('Next'),
               ),
             ),
             const SizedBox(height: 10),
@@ -81,12 +89,12 @@ class Forgotpassword2Page extends StatelessWidget {
                   Navigator.push(
                     context,
                     MaterialPageRoute(
-                      builder: (context) => const Forgotpassword3Page(),
+                      builder: (context) => const HomePage(),
                     ),
                   );
                 },
                 child: const Text(
-                  'Skip, I will confirm later',
+                  'Skip',
                   style: TextStyle(color: primaryColor),
                 ),
               ),

@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_doctor_nearby/login/forgot_password_2.dart';
+import 'package:flutter_doctor_nearby/screens/login/forgot_password_2.dart';
 import 'package:flutter_doctor_nearby/ui_values.dart';
 
 class Forgotpassword1Page extends StatelessWidget {

@@ -1,6 +1,6 @@
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_doctor_nearby/login/forgot_password_1.dart';
+import 'package:flutter_doctor_nearby/screens/login/forgot_password_1.dart';
 import 'package:flutter_doctor_nearby/screens/main_screens/home_page.dart';
 import 'package:flutter_doctor_nearby/ui_values.dart';
 
