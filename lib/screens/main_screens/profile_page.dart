@@ -1,7 +1,6 @@
-import 'dart:math';
-
 import 'package:flutter/material.dart';
 import 'package:flutter_doctor_nearby/screens/edit_information.dart';
+import 'package:flutter_doctor_nearby/screens/login/login_page.dart';
 import 'package:flutter_doctor_nearby/screens/main_screens/notification_page.dart';
 import 'package:flutter_doctor_nearby/ui_values.dart';
 
@@ -54,7 +53,7 @@ class _ProfilePageState extends State<ProfilePage> {
                             child: ClipRRect(
                               borderRadius: BorderRadius.circular(borderRadius),
                               child: Image.asset(
-                                edwardAvt,
+                                wandaAvt,
                                 fit: BoxFit.cover,
                               ),
                             ),
@@ -72,7 +71,7 @@ class _ProfilePageState extends State<ProfilePage> {
                                   ),
                                 ),
                                 Text(
-                                  'Edward Cullen',
+                                  'Wanda Maximoff',
                                   style: TextStyle(
                                     fontSize: 17,
                                     fontWeight: FontWeight.bold,
@@ -85,7 +84,11 @@ class _ProfilePageState extends State<ProfilePage> {
                       ),
                     ),
                     GestureDetector(
-                      onTap: () {},
+                      onTap: () => Navigator.of(context).push(
+                        MaterialPageRoute(
+                          builder: (context) => const LoginPage(),
+                        ),
+                      ),
                       child: SizedBox(
                         height: 40,
                         width: 40,

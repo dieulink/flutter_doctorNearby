@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_doctor_nearby/models/disease.dart';
 import 'package:flutter_doctor_nearby/models/doctor.dart';
+import 'package:flutter_doctor_nearby/models/notification.dart';
 
 // color
 const primaryColor = Color(0xff0D53FC);
@@ -202,3 +203,31 @@ List<DateTime> unactiveDateTimeList = getFilteredDates(
   DateTime(2024, 10, 1),
   DateTime(2024, 10, 31),
 );
+
+List<Noti> notifications = [
+  Noti(
+    title: 'Meet with Doctor Stephen Strange',
+    subTitle: 'The appointment will be started at 10:00 tomorrow.',
+    isRead: false,
+  ),
+  Noti(
+    title: 'Maintain system',
+    subTitle: 'In 14-10-2024, we will maintain our system for 1 day',
+    isRead: true,
+  ),
+  Noti(
+    title: 'Dr.Edward has declined your request',
+    subTitle: 'Dr.Edward has declined your request for being in hospital that day',
+    isRead: true,
+  ),
+  Noti(
+    title: 'Review Dr.Stephen',
+    subTitle: 'Had an excellent appointment? Give Dr.Stephen 5 stars now!',
+    isRead: false,
+  ),
+  Noti(
+    title: 'Dr.Stranges has agreed your request',
+    subTitle: 'Click for information due date meet in someday',
+    isRead: false,
+  ),
+];
