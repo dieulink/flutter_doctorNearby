@@ -1,11 +1,12 @@
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_doctor_nearby/login/forgotPassword1_page.dart';
-import 'package:flutter_doctor_nearby/screens/home_page.dart';
+import 'package:flutter_doctor_nearby/components/bottom_menu.dart';
+import 'package:flutter_doctor_nearby/screens/login/forgot_password_1.dart';
+import 'package:flutter_doctor_nearby/screens/main_screens/home_page.dart';
 import 'package:flutter_doctor_nearby/ui_values.dart';
 
-class loginPage extends StatelessWidget {
-  const loginPage({super.key});
+class LoginPage extends StatelessWidget {
+  const LoginPage({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -13,6 +14,7 @@ class loginPage extends StatelessWidget {
       length: 2,
       child: Scaffold(
         appBar: AppBar(
+          automaticallyImplyLeading: false,
           bottom: TabBar(
             padding: EdgeInsets.only(right: 150, left: 20),
             tabs: [
@@ -122,7 +124,7 @@ class LoginTab extends StatelessWidget {
                 ),
               ),
             ),
-              Container(
+            Container(
               width: double.infinity,
               child: TextButton(
                 style: TextButton.styleFrom(
@@ -163,17 +165,17 @@ class LoginTab extends StatelessWidget {
                     PageRouteBuilder(
                       transitionDuration: Duration(milliseconds: 500),
                       pageBuilder: (context, animation, secondaryAnimation) =>
-                          HomePage(),
+                          MyBottomMenu(),
                       transitionsBuilder:
                           (context, animation, secondaryAnimation, child) {
                         const begin = Offset(1.0, 0.0);
                         const end = Offset.zero;
                         const curve = Curves.ease;
-        
+
                         var tween = Tween(begin: begin, end: end)
                             .chain(CurveTween(curve: curve));
                         var offsetAnimation = animation.drive(tween);
-        
+
                         return SlideTransition(
                           position: offsetAnimation,
                           child: child,
@@ -319,11 +321,11 @@ class RegisterTab extends StatelessWidget {
                         const begin = Offset(1.0, 0.0);
                         const end = Offset.zero;
                         const curve = Curves.ease;
-        
+
                         var tween = Tween(begin: begin, end: end)
                             .chain(CurveTween(curve: curve));
                         var offsetAnimation = animation.drive(tween);
-        
+
                         return SlideTransition(
                           position: offsetAnimation,
                           child: child,

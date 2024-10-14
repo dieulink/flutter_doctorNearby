@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_doctor_nearby/onBoarding/onBoarding_page2.dart';
-import 'package:flutter_doctor_nearby/screens/home_page.dart';
+import 'package:flutter_doctor_nearby/components/bottom_menu.dart';
+import 'package:flutter_doctor_nearby/screens/login/forgot_password_2.dart';
 import 'package:flutter_doctor_nearby/ui_values.dart';
 
 class Forgotpassword3Page extends StatelessWidget {
@@ -10,9 +10,45 @@ class Forgotpassword3Page extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       body: Padding(
-        padding: const EdgeInsets.fromLTRB(11.0, 100.0, 11.0, 11.0),
+        padding: const EdgeInsets.fromLTRB(11.0, 11.0, 11.0, 11.0),
         child: ListView(
           children: [
+            Align(
+              alignment: Alignment.centerLeft,
+              child: TextButton(
+                  onPressed: () {
+                    Navigator.push(
+                      context,
+                      PageRouteBuilder(
+                        transitionDuration: Duration(milliseconds: 500),
+                        pageBuilder: (context, animation, secondaryAnimation) =>
+                            Forgotpassword2Page(),
+                        transitionsBuilder:
+                            (context, animation, secondaryAnimation, child) {
+                          const begin = Offset(-1.0, 0.0);
+                          const end = Offset.zero;
+                          const curve = Curves.ease;
+
+                          var tween = Tween(begin: begin, end: end)
+                              .chain(CurveTween(curve: curve));
+                          var offsetAnimation = animation.drive(tween);
+
+                          return SlideTransition(
+                            position: offsetAnimation,
+                            child: child,
+                          );
+                        },
+                      ),
+                    );
+                  },
+                  child: Icon(
+                    Icons.arrow_back_ios,
+                    color: primaryColor,
+                  )),
+            ),
+            const SizedBox(
+              height: 80,
+            ),
             Align(
               alignment: Alignment.centerLeft,
               child: const Text(
@@ -93,7 +129,7 @@ class Forgotpassword3Page extends StatelessWidget {
                     PageRouteBuilder(
                       transitionDuration: Duration(milliseconds: 500),
                       pageBuilder: (context, animation, secondaryAnimation) =>
-                          HomePage(),
+                          const MyBottomMenu(),
                       transitionsBuilder:
                           (context, animation, secondaryAnimation, child) {
                         const begin = Offset(1.0, 0.0);

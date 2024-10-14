@@ -1,30 +1,58 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_doctor_nearby/onBoarding/onBoarding_page3.dart';
-import 'package:flutter_doctor_nearby/screens/home_page.dart';
+import 'package:flutter_doctor_nearby/screens/login/forgot_password_1.dart';
+import 'package:flutter_doctor_nearby/screens/login/forgot_password_3.dart';
 import 'package:flutter_doctor_nearby/ui_values.dart';
 
-class OnboardingPage2 extends StatelessWidget {
-  const OnboardingPage2({super.key});
+class Forgotpassword2Page extends StatelessWidget {
+  const Forgotpassword2Page({super.key});
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       body: Padding(
-        padding: const EdgeInsets.fromLTRB(11.0, 108.0, 11.0, 11.0),
-        child: Column(
-          //mainAxisAlignment: MainAxisAlignment.center,
-          //crossAxisAlignment: CrossAxisAlignment.start,
+        padding: const EdgeInsets.fromLTRB(11.0, 11.0, 11.0, 11.0),
+        child: ListView(
           children: [
-            Image.asset(
-              'assets/images/onBoarding2.png',
-              width: 353,
-              height: 272,
+            Align(
+              alignment: Alignment.centerLeft,
+              child: TextButton(
+                  onPressed: () {
+                    Navigator.push(
+                      context,
+                      PageRouteBuilder(
+                        transitionDuration: Duration(milliseconds: 500),
+                        pageBuilder: (context, animation, secondaryAnimation) =>
+                            Forgotpassword1Page(),
+                        transitionsBuilder:
+                            (context, animation, secondaryAnimation, child) {
+                          const begin = Offset(-1.0, 0.0);
+                          const end = Offset.zero;
+                          const curve = Curves.ease;
+
+                          var tween = Tween(begin: begin, end: end)
+                              .chain(CurveTween(curve: curve));
+                          var offsetAnimation = animation.drive(tween);
+
+                          return SlideTransition(
+                            position: offsetAnimation,
+                            child: child,
+                          );
+                        },
+                      ),
+                    );
+                  },
+                  child: Icon(
+                    Icons.arrow_back_ios,
+                    color: primaryColor,
+                  )),
             ),
-            const SizedBox(height: 30),
+            const SizedBox(
+              height: 80,
+            ),
             Align(
               alignment: Alignment.centerLeft,
               child: const Text(
-                'Find doctor near you',
+                'Check your email',
                 style: TextStyle(
                   fontSize: 32,
                   fontWeight: FontWeight.bold,
@@ -35,11 +63,11 @@ class OnboardingPage2 extends StatelessWidget {
             Align(
               alignment: Alignment.centerLeft,
               child: const Text(
-                'Find trusted general practitioners and specialists near you.',
+                'We have sent a password recovery instructions to your email.',
                 style: TextStyle(fontSize: 16, color: greyContent),
               ),
             ),
-            const SizedBox(height: 80),
+            const SizedBox(height: 50),
             Container(
               height: 50,
               width: double.infinity,
@@ -53,9 +81,9 @@ class OnboardingPage2 extends StatelessWidget {
                   Navigator.push(
                     context,
                     PageRouteBuilder(
-                      transitionDuration: Duration(milliseconds: 500),
+                      transitionDuration: const Duration(milliseconds: 500),
                       pageBuilder: (context, animation, secondaryAnimation) =>
-                          const OnboardingPage3(),
+                          const Forgotpassword3Page(),
                       transitionsBuilder:
                           (context, animation, secondaryAnimation, child) {
                         const begin = Offset(1.0, 0.0);
@@ -74,7 +102,7 @@ class OnboardingPage2 extends StatelessWidget {
                     ),
                   );
                 },
-                child: const Text('Next'),
+                child: const Text('Open my email'),
               ),
             ),
             const SizedBox(height: 10),
@@ -89,12 +117,12 @@ class OnboardingPage2 extends StatelessWidget {
                   Navigator.push(
                     context,
                     MaterialPageRoute(
-                      builder: (context) => const HomePage(),
+                      builder: (context) => const Forgotpassword3Page(),
                     ),
                   );
                 },
                 child: const Text(
-                  'Skip',
+                  'Skip, I will confirm later',
                   style: TextStyle(color: primaryColor),
                 ),
               ),
