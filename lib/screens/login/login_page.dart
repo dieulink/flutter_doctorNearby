@@ -165,7 +165,7 @@ class LoginTab extends StatelessWidget {
                     PageRouteBuilder(
                       transitionDuration: Duration(milliseconds: 500),
                       pageBuilder: (context, animation, secondaryAnimation) =>
-                          MyBottomMenu(),
+                          HomePage(),
                       transitionsBuilder:
                           (context, animation, secondaryAnimation, child) {
                         const begin = Offset(1.0, 0.0);

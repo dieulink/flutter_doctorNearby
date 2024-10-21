@@ -4,6 +4,10 @@ import 'package:flutter_doctor_nearby/components/doctor_card_item.dart';
 import 'package:flutter_doctor_nearby/components/icon_button.dart';
 import 'package:flutter_doctor_nearby/components/speciality_card.dart';
 import 'package:flutter_doctor_nearby/screens/doctor_detailed_page.dart';
+import 'package:flutter_doctor_nearby/screens/edit_information.dart';
+import 'package:flutter_doctor_nearby/screens/main_screens/appointment_page.dart';
+import 'package:flutter_doctor_nearby/screens/main_screens/chat_page.dart';
+import 'package:flutter_doctor_nearby/screens/main_screens/favorite_page.dart';
 import 'package:flutter_doctor_nearby/screens/main_screens/notification_page.dart';
 import 'package:flutter_doctor_nearby/screens/main_screens/profile_page.dart';
 import 'package:flutter_doctor_nearby/ui_values.dart';
@@ -20,9 +24,9 @@ class _HomePageState extends State<HomePage> {
   @override
   Widget build(BuildContext context) {
     Size size = MediaQuery.of(context).size;
-    return SafeArea(
-      child: Scaffold(
-        body: Stack(
+    return Scaffold(
+      body: SafeArea(
+        child: Stack(
           children: [
             SingleChildScrollView(
               child: Column(
@@ -125,7 +129,7 @@ class _HomePageState extends State<HomePage> {
                       ],
                     ),
                   ),
-                  const SizedBox(height: 10),
+                  const SizedBox(height: 150),
                 ],
               ),
             ),
@@ -179,6 +183,42 @@ class _HomePageState extends State<HomePage> {
           ],
         ),
       ),
+      bottomNavigationBar: Container(
+        height: 60,
+        padding: const EdgeInsets.symmetric(horizontal: 16.0),
+        decoration: BoxDecoration(color: Colors.white, boxShadow: [
+          BoxShadow(
+              blurRadius: 20.0,
+              color: Colors.grey.withOpacity(0.2),
+              offset: const Offset(0, -10)),
+        ]),
+        child: Row(
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          children: [
+            IconButton(onPressed: () {}, icon: Image.asset(homeSelectedIcon)),
+            IconButton(
+              onPressed: () => Navigator.of(context).push(
+                  MaterialPageRoute(builder: (context) => const ChatPage())),
+              icon: Image.asset(chatIcon),
+            ),
+            IconButton(
+              onPressed: () => Navigator.of(context).push(MaterialPageRoute(
+                  builder: (context) => const AppointmentPage())),
+              icon: Image.asset(appointmentIcon),
+            ),
+            IconButton(
+              onPressed: () => Navigator.of(context).push(MaterialPageRoute(
+                  builder: (context) => const FavoritePage())),
+              icon: Image.asset(favoriteIcon),
+            ),
+            IconButton(
+              onPressed: () => Navigator.of(context).push(
+                  MaterialPageRoute(builder: (context) => const ProfilePage())),
+              icon: Image.asset(profileIcon),
+            ),
+          ],
+        ),
+      ),
     );
   }
 
@@ -211,8 +251,10 @@ class _HomePageState extends State<HomePage> {
                     ),
                     GestureDetector(
                       onTap: () {
-                        Navigator.push(context,
-                            MaterialPageRoute(builder: (_) => ProfilePage()));
+                        Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                                builder: (_) => const EditInformationPage()));
                       },
                       child: Row(
                         children: [
