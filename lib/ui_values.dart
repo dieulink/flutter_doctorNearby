@@ -142,6 +142,9 @@ List<DateTime> activeDateTimeList = [
   DateTime(2024, 10, 13),
   DateTime(2024, 10, 15),
   DateTime(2024, 10, 20),
+  DateTime(2024, 10, 27),
+  DateTime(2024, 10, 30),
+  DateTime(2024, 11, 5),
 ];
 
 List<String> activeHours = ['10:00 - 12:00', '15:00 - 17:00', '18:30 - 20:00'];

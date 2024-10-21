@@ -1,4 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_doctor_nearby/screens/main_screens/appointment_page.dart';
+import 'package:flutter_doctor_nearby/screens/main_screens/favorite_page.dart';
+import 'package:flutter_doctor_nearby/screens/main_screens/home_page.dart';
+import 'package:flutter_doctor_nearby/screens/main_screens/profile_page.dart';
 import 'package:flutter_doctor_nearby/ui_values.dart';
 
 class ChatPage extends StatefulWidget {
@@ -289,6 +293,44 @@ class _ChatPageState extends State<ChatPage> {
                 ),
               ],
             )
+          ],
+        ),
+      ),
+      bottomNavigationBar: Container(
+        height: 60,
+        padding: const EdgeInsets.symmetric(horizontal: 16.0),
+        decoration: BoxDecoration(color: Colors.white, boxShadow: [
+          BoxShadow(
+              blurRadius: 20.0,
+              color: Colors.grey.withOpacity(0.2),
+              offset: const Offset(0, -10)),
+        ]),
+        child: Row(
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          children: [
+            IconButton(
+                onPressed: () => Navigator.of(context).push(
+                    MaterialPageRoute(builder: (context) => const HomePage())),
+                icon: Image.asset(homeIcon)),
+            IconButton(
+              onPressed: () {},
+              icon: Image.asset(chatSelectedIcon),
+            ),
+            IconButton(
+              onPressed: () => Navigator.of(context).push(MaterialPageRoute(
+                  builder: (context) => const AppointmentPage())),
+              icon: Image.asset(appointmentIcon),
+            ),
+            IconButton(
+              onPressed: () => Navigator.of(context).push(MaterialPageRoute(
+                  builder: (context) => const FavoritePage())),
+              icon: Image.asset(favoriteIcon),
+            ),
+            IconButton(
+              onPressed: () => Navigator.of(context).push(
+                  MaterialPageRoute(builder: (context) => const ProfilePage())),
+              icon: Image.asset(profileIcon),
+            ),
           ],
         ),
       ),

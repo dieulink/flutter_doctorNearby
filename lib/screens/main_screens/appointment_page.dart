@@ -1,6 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_doctor_nearby/screens/appointment_detail/appointment_done.dart';
 import 'package:flutter_doctor_nearby/screens/appointment_detail/appointment_on_going.dart';
+import 'package:flutter_doctor_nearby/screens/main_screens/chat_page.dart';
+import 'package:flutter_doctor_nearby/screens/main_screens/favorite_page.dart';
+import 'package:flutter_doctor_nearby/screens/main_screens/home_page.dart';
+import 'package:flutter_doctor_nearby/screens/main_screens/profile_page.dart';
 import 'package:flutter_doctor_nearby/ui_values.dart';
 
 class AppointmentPage extends StatefulWidget {
@@ -55,6 +59,44 @@ class _AppointmentPageState extends State<AppointmentPage> {
             ActiveTab(),
             HistoryTab(),
           ],
+        ),
+        bottomNavigationBar: Container(
+          height: 60,
+          padding: const EdgeInsets.symmetric(horizontal: 16.0),
+          decoration: BoxDecoration(color: Colors.white, boxShadow: [
+            BoxShadow(
+                blurRadius: 20.0,
+                color: Colors.grey.withOpacity(0.2),
+                offset: const Offset(0, -10)),
+          ]),
+          child: Row(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            children: [
+              IconButton(
+                  onPressed: () => Navigator.of(context).push(MaterialPageRoute(
+                      builder: (context) => const HomePage())),
+                  icon: Image.asset(homeIcon)),
+              IconButton(
+                onPressed: () => Navigator.of(context).push(
+                    MaterialPageRoute(builder: (context) => const ChatPage())),
+                icon: Image.asset(chatIcon),
+              ),
+              IconButton(
+                onPressed: () {},
+                icon: Image.asset(appointmentSelectedIcon),
+              ),
+              IconButton(
+                onPressed: () => Navigator.of(context).push(MaterialPageRoute(
+                    builder: (context) => const FavoritePage())),
+                icon: Image.asset(favoriteIcon),
+              ),
+              IconButton(
+                onPressed: () => Navigator.of(context).push(MaterialPageRoute(
+                    builder: (context) => const ProfilePage())),
+                icon: Image.asset(profileIcon),
+              ),
+            ],
+          ),
         ),
       ),
     );

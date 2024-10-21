@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_doctor_nearby/components/bottom_menu.dart';
 import 'package:flutter_doctor_nearby/components/my_button.dart';
+import 'package:flutter_doctor_nearby/screens/main_screens/appointment_page.dart';
 import 'package:flutter_doctor_nearby/ui_values.dart';
 
 class AppointmentSuccess extends StatelessWidget {
@@ -179,7 +180,7 @@ class AppointmentSuccess extends StatelessWidget {
         child: MyButton(
           onTap: () => Navigator.of(context).push(
             MaterialPageRoute(
-              builder: (context) => const MyBottomMenu(),
+              builder: (context) => const AppointmentPage(),
             ),
           ),
           label: 'OK',
