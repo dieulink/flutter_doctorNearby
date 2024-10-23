@@ -1,14 +1,68 @@
+import 'package:firebase_database/firebase_database.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_doctor_nearby/components/information_card.dart';
 import 'package:flutter_doctor_nearby/components/my_button.dart';
 import 'package:flutter_doctor_nearby/screens/make_an_appointment/appointment_success.dart';
 import 'package:flutter_doctor_nearby/ui_values.dart';
 
-class AppointmentSummary extends StatelessWidget {
-  const AppointmentSummary({super.key});
+class AppointmentSummary extends StatefulWidget {
+  final String timeFrame;
+  final String date;
+
+  const AppointmentSummary(
+      {super.key, required this.timeFrame, required this.date});
+
+  @override
+  State<AppointmentSummary> createState() => _AppointmentSummaryState();
+}
+
+class _AppointmentSummaryState extends State<AppointmentSummary> {
+  int _currentIndex = 0;
+  final DatabaseReference _dbRef = FirebaseDatabase.instance.ref();
+
+  void _getAllAppointments() async {
+    DatabaseEvent event = await _dbRef.child("appointments").once();
+    DataSnapshot snapshot = event.snapshot;
+
+    if (snapshot.value != null) {
+      final appointments = snapshot.value as List<Object?>;
+
+      for (var appointment in appointments) {
+        if (appointment != null) {
+          Map<dynamic, dynamic> appointmentData =
+              appointment as Map<dynamic, dynamic>;
+          int id = int.tryParse(appointmentData['id'].toString()) ?? 0;
+
+          if (id > _currentIndex) {
+            _currentIndex = id;
+          }
+        }
+      }
+    }
+  }
+
+  void _addData() {
+    int newIndex = _currentIndex + 1;
+    _currentIndex = newIndex;
+    // ignore: avoid_single_cascade_in_expression_statements
+    _dbRef.child("appointments")
+      ..child(newIndex.toString()).set({
+        'time': widget.timeFrame,
+        'patient': 'John Doe',
+        'doctor': 'Stephen Strange',
+        'date': widget.date,
+        'id': newIndex,
+      }).then((_) {
+        print('Data added successfully.');
+      }).catchError((error) {
+        print('Failed to add data: $error');
+      });
+  }
 
   @override
   Widget build(BuildContext context) {
+    _getAllAppointments();
+
     return Scaffold(
       appBar: AppBar(
         title: const Text(
@@ -49,7 +103,7 @@ class AppointmentSummary extends StatelessWidget {
                           'Date',
                           style: titleCardStyle,
                         ),
-                        Text('15-10-2024',
+                        Text(widget.date,
                             style: titleCardStyle.copyWith(
                                 fontWeight: FontWeight.normal)),
                       ],
@@ -62,7 +116,7 @@ class AppointmentSummary extends StatelessWidget {
                           'Time',
                           style: titleCardStyle,
                         ),
-                        Text('10:00 - 12:00',
+                        Text(widget.timeFrame,
                             style: titleCardStyle.copyWith(
                                 fontWeight: FontWeight.normal)),
                       ],
@@ -120,11 +174,17 @@ class AppointmentSummary extends StatelessWidget {
         color: Colors.white,
         shadowColor: Colors.grey,
         child: MyButton(
-          onTap: () => Navigator.of(context).push(
-            MaterialPageRoute(
-              builder: (context) => const AppointmentSuccess(),
-            ),
-          ),
+          onTap: () {
+            _addData();
+            Navigator.of(context).push(
+              MaterialPageRoute(
+                builder: (context) => AppointmentSuccess(
+                  timeFrame: widget.timeFrame,
+                  date: widget.date,
+                ),
+              ),
+            );
+          },
           label: 'Make my appointment',
           backgroundColor: primaryColor,
           fontSize: 16,
@@ -133,4 +193,3 @@ class AppointmentSummary extends StatelessWidget {
     );
   }
 }
-

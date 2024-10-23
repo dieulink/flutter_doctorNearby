@@ -4,6 +4,7 @@ import 'package:flutter_doctor_nearby/components/doctor_card_item.dart';
 import 'package:flutter_doctor_nearby/components/my_button.dart';
 import 'package:flutter_doctor_nearby/screens/make_an_appointment/appointment_summary.dart';
 import 'package:flutter_doctor_nearby/ui_values.dart';
+import 'package:intl/intl.dart';
 
 class DateTimePage extends StatefulWidget {
   const DateTimePage({super.key});
@@ -14,7 +15,8 @@ class DateTimePage extends StatefulWidget {
 
 class _DateTimePageState extends State<DateTimePage> {
   int chosenMonth = 0;
-  int selectedButtonIndex = 3;
+  int selectedButtonIndex = -1;
+  DateTime _selectedDate = getDateTimeList(activeDateTimeList)[0];
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -47,6 +49,7 @@ class _DateTimePageState extends State<DateTimePage> {
               disabledDates: getFilteredDates(DateTime(DateTime.now().year),
                   DateTime(DateTime.now().year + 1)),
               timeLineProps: const EasyTimeLineProps(hPadding: 0.0),
+              onDateChange: (selectedDate) => {_selectedDate = selectedDate},
               dayProps: EasyDayProps(
                 height: 85,
                 width: 58,
@@ -110,6 +113,7 @@ class _DateTimePageState extends State<DateTimePage> {
                     onTap: () {
                       setState(() {
                         selectedButtonIndex = index;
+                        print(selectedButtonIndex);
                       });
                     },
                     isChosen: selectedButtonIndex == index,
@@ -125,11 +129,29 @@ class _DateTimePageState extends State<DateTimePage> {
         color: Colors.white,
         shadowColor: Colors.grey,
         child: MyButton(
-          onTap: () => Navigator.of(context).push(
-            MaterialPageRoute(
-              builder: (context) => const AppointmentSummary(),
-            ),
-          ),
+          onTap: () {
+            if (selectedButtonIndex == -1) {
+              ScaffoldMessenger.of(context).showSnackBar(
+                const SnackBar(
+                  content:
+                      Text('Please select a time frame for your appointment!'),
+                  duration: Duration(seconds: 3),
+                ),
+              );
+              return;
+            }
+            String formattedDate =
+                DateFormat('dd-MM-yyyy').format(_selectedDate);
+
+            Navigator.of(context).push(
+              MaterialPageRoute(
+                builder: (context) => AppointmentSummary(
+                  timeFrame: activeHours[selectedButtonIndex],
+                  date: formattedDate,
+                ),
+              ),
+            );
+          },
           label: 'Next',
           backgroundColor: primaryColor,
           fontSize: 16,

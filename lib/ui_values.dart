@@ -147,7 +147,11 @@ List<DateTime> activeDateTimeList = [
   DateTime(2024, 11, 5),
 ];
 
-List<String> activeHours = ['10:00 - 12:00', '15:00 - 17:00', '18:30 - 20:00'];
+List<String> activeHours = [
+  '10:00 AM - 12:00 AM',
+  '15:00 PM - 17:00 PM',
+  '18:30 PM - 20:00 PM'
+];
 
 List<Doctor> doctorList = [
   Doctor(
@@ -192,14 +196,16 @@ List<DateTime> getFilteredDates(startDate, endDate) {
 }
 
 List<DateTime> getDateTimeList(List<DateTime> activeList) {
-  for (int i = 0; i < activeList.length; i++) {
-    if (DateTime.now().year > activeList[i].year ||
-        DateTime.now().month > activeList[i].month ||
-        DateTime.now().day > activeList[i].day) {
-      activeList.removeAt(i);
+  List<DateTime> futureList = [];
+  for (DateTime date in activeList) {
+    if (date.isAfter(DateTime.now()) ||
+        (date.year == DateTime.now().year &&
+            date.month == DateTime.now().month &&
+            date.day >= DateTime.now().day)) {
+      futureList.add(date);
     }
   }
-  return activeList;
+  return futureList;
 }
 
 List<DateTime> unactiveDateTimeList = getFilteredDates(
@@ -220,7 +226,8 @@ List<Noti> notifications = [
   ),
   Noti(
     title: 'Dr.Edward has declined your request',
-    subTitle: 'Dr.Edward has declined your request for being in hospital that day',
+    subTitle:
+        'Dr.Edward has declined your request for being in hospital that day',
     isRead: true,
   ),
   Noti(

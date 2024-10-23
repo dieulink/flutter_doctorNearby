@@ -4,7 +4,9 @@ import 'package:flutter_doctor_nearby/screens/main_screens/appointment_page.dart
 import 'package:flutter_doctor_nearby/ui_values.dart';
 
 class AppointmentOnGoing extends StatelessWidget {
-  const AppointmentOnGoing({super.key});
+  final String? timeFrame;
+  final String? date;
+  const AppointmentOnGoing({super.key, this.timeFrame, this.date});
 
   @override
   Widget build(BuildContext context) {
@@ -22,7 +24,10 @@ class AppointmentOnGoing extends StatelessWidget {
               PageRouteBuilder(
                 transitionDuration: Duration(milliseconds: 500),
                 pageBuilder: (context, animation, secondaryAnimation) =>
-                    AppointmentPage(),
+                    AppointmentPage(
+                  date: date,
+                  timeFrame: timeFrame,
+                ),
                 transitionsBuilder:
                     (context, animation, secondaryAnimation, child) {
                   const begin = Offset(-1.0, 0.0);
@@ -70,18 +75,18 @@ class AppointmentOnGoing extends StatelessWidget {
                   child: Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
-                      const Column(
+                      Column(
                         mainAxisAlignment: MainAxisAlignment.center,
                         children: [
                           Text(
-                            "Date",
+                            'Date ${date ?? '11-10-2024'} ',
                             style: TextStyle(
                               fontSize: 18,
                               fontWeight: FontWeight.bold,
                             ),
                           ),
                           Text(
-                            "Time",
+                            timeFrame ?? '10:00 AM - 12:00 AM',
                             style: TextStyle(
                               fontSize: 18,
                               //fontWeight: FontWeight.bold,
@@ -103,7 +108,10 @@ class AppointmentOnGoing extends StatelessWidget {
                                 transitionDuration: Duration(milliseconds: 500),
                                 pageBuilder:
                                     (context, animation, secondaryAnimation) =>
-                                        AppointmentDone(),
+                                        AppointmentDone(
+                                  date: date,
+                                  timeFrame: timeFrame,
+                                ),
                                 transitionsBuilder: (context, animation,
                                     secondaryAnimation, child) {
                                   const begin = Offset(1.0, 0.0);

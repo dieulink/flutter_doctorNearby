@@ -4,7 +4,9 @@ import 'package:flutter_doctor_nearby/screens/main_screens/appointment_page.dart
 import 'package:flutter_doctor_nearby/ui_values.dart';
 
 class AppointmentDone extends StatelessWidget {
-  const AppointmentDone({super.key});
+  final String? timeFrame;
+  final String? date;
+  const AppointmentDone({super.key, this.timeFrame, this.date});
 
   @override
   Widget build(BuildContext context) {
@@ -70,18 +72,18 @@ class AppointmentDone extends StatelessWidget {
                   child: Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
-                      const Column(
+                      Column(
                         mainAxisAlignment: MainAxisAlignment.center,
                         children: [
                           Text(
-                            "Date",
+                            'Date ${date ?? '11-10-2024'} ',
                             style: TextStyle(
                               fontSize: 18,
                               fontWeight: FontWeight.bold,
                             ),
                           ),
                           Text(
-                            "Time",
+                            timeFrame ?? '10:00 AM - 12:00 AM',
                             style: TextStyle(
                               fontSize: 18,
                               //fontWeight: FontWeight.bold,

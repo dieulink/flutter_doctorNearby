@@ -5,7 +5,10 @@ import 'package:flutter_doctor_nearby/screens/main_screens/appointment_page.dart
 import 'package:flutter_doctor_nearby/ui_values.dart';
 
 class AppointmentSuccess extends StatelessWidget {
-  const AppointmentSuccess({super.key});
+  final String timeFrame;
+  final String date;
+  const AppointmentSuccess(
+      {super.key, required this.timeFrame, required this.date});
 
   @override
   Widget build(BuildContext context) {
@@ -125,7 +128,7 @@ class AppointmentSuccess extends StatelessWidget {
                                 'Date',
                                 style: titleCardStyle,
                               ),
-                              Text('15-10-2024',
+                              Text(date,
                                   style: titleCardStyle.copyWith(
                                       fontWeight: FontWeight.normal)),
                             ],
@@ -138,7 +141,7 @@ class AppointmentSuccess extends StatelessWidget {
                                 'Time',
                                 style: titleCardStyle,
                               ),
-                              Text('10:00 - 12:00',
+                              Text(timeFrame,
                                   style: titleCardStyle.copyWith(
                                       fontWeight: FontWeight.normal)),
                             ],

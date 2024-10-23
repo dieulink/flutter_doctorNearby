@@ -1,3 +1,4 @@
+import 'package:firebase_database/firebase_database.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_doctor_nearby/screens/appointment_detail/appointment_done.dart';
 import 'package:flutter_doctor_nearby/screens/appointment_detail/appointment_on_going.dart';
@@ -8,13 +9,76 @@ import 'package:flutter_doctor_nearby/screens/main_screens/profile_page.dart';
 import 'package:flutter_doctor_nearby/ui_values.dart';
 
 class AppointmentPage extends StatefulWidget {
-  const AppointmentPage({super.key});
+  final String? timeFrame;
+  final String? date;
+  const AppointmentPage({super.key, this.timeFrame, this.date});
 
   @override
   State<AppointmentPage> createState() => _AppointmentPageState();
 }
 
 class _AppointmentPageState extends State<AppointmentPage> {
+  final DatabaseReference _dbRef = FirebaseDatabase.instance.ref();
+  String _data = "No data";
+  int _currentIndex = 0;
+  List<Object?> _appointments = [];
+
+  @override
+  void initState() {
+    super.initState();
+    _listenToRealtimeData();
+    _getAllAppointments();
+  }
+
+  void _getAllAppointments() async {
+    DatabaseEvent event = await _dbRef.child("appointments").once();
+    DataSnapshot snapshot = event.snapshot;
+
+    if (snapshot.value != null) {
+      final appointments = snapshot.value as List<Object?>;
+
+      int maxId = 0;
+
+      for (var appointment in appointments) {
+        if (appointment != null) {
+          _appointments.add(appointment);
+          Map<dynamic, dynamic> appointmentData =
+              appointment as Map<dynamic, dynamic>;
+          int id = int.tryParse(appointmentData['id'].toString()) ?? 0;
+
+          if (id > maxId) {
+            maxId = id;
+          }
+        }
+      }
+
+      setState(() {
+        _currentIndex = maxId;
+      });
+    } else {
+      setState(() {
+        _currentIndex = 0;
+      });
+    }
+  }
+
+  void _listenToRealtimeData() {
+    _dbRef.child("appointments").onValue.listen((DatabaseEvent event) {
+      DataSnapshot snapshot = event.snapshot;
+      setState(() {
+        _data = snapshot.value.toString();
+      });
+    });
+  }
+
+  void _getDataOnce() async {
+    DatabaseEvent event = await _dbRef.child("appointments").once();
+    DataSnapshot snapshot = event.snapshot;
+    setState(() {
+      _data = snapshot.value.toString();
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
     return DefaultTabController(
@@ -36,10 +100,13 @@ class _AppointmentPageState extends State<AppointmentPage> {
             ),
             bottom: TabBar(
               padding: const EdgeInsets.only(right: 150, left: 20),
-              tabs: [
-                const Tab(text: "Active"),
-                const Tab(text: "History"),
+              tabs: const [
+                Tab(text: "Active"),
+                Tab(text: "History"),
               ],
+              onTap: (value) {
+                // _addData();
+              },
               dividerColor: Colors.transparent,
               labelColor: primaryColor,
               unselectedLabelColor: greyContent,
@@ -56,7 +123,9 @@ class _AppointmentPageState extends State<AppointmentPage> {
         ),
         body: TabBarView(
           children: [
-            ActiveTab(),
+            ActiveTab(
+              appointments: _appointments,
+            ),
             HistoryTab(),
           ],
         ),
@@ -104,10 +173,12 @@ class _AppointmentPageState extends State<AppointmentPage> {
 }
 
 class ActiveTab extends StatelessWidget {
-  @override
-  Widget build(BuildContext context) {
+  final List<Object?> appointments;
+  const ActiveTab({super.key, required this.appointments});
+
+  Widget item(BuildContext context, Map<dynamic, dynamic> data) {
     return Padding(
-      padding: const EdgeInsets.all(16.0),
+      padding: const EdgeInsets.only(top: 15, right: 16, left: 16),
       child: SingleChildScrollView(
         child: Container(
           height: 200,
@@ -140,11 +211,11 @@ class ActiveTab extends StatelessWidget {
                           ),
                         ),
                         const SizedBox(width: 15),
-                        const Column(
+                        Column(
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
                             Text(
-                              'Stephen Strange',
+                              data['doctor']!,
                               style: TextStyle(
                                 fontWeight: FontWeight.bold,
                                 color: Colors.white,
@@ -183,7 +254,10 @@ class ActiveTab extends StatelessWidget {
                                         Duration(milliseconds: 500),
                                     pageBuilder: (context, animation,
                                             secondaryAnimation) =>
-                                        AppointmentOnGoing(),
+                                        AppointmentOnGoing(
+                                      date: data['date'],
+                                      timeFrame: data['time'],
+                                    ),
                                     transitionsBuilder: (context, animation,
                                         secondaryAnimation, child) {
                                       const begin = Offset(1.0, 0.0);
@@ -220,7 +294,7 @@ class ActiveTab extends StatelessWidget {
                 width: double.infinity,
                 color: Colors.black,
               ),
-              const Padding(
+              Padding(
                 padding: EdgeInsets.all(16.0),
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
@@ -241,7 +315,7 @@ class ActiveTab extends StatelessWidget {
                     Align(
                       alignment: Alignment.center,
                       child: Text(
-                        "Thu, Jan 11 at 09.00 AM - 11.30 AM  ",
+                        "${data['date']} at ${data['time']!} ",
                         style: TextStyle(
                           color: Colors.white,
                           fontSize: 14,
@@ -257,9 +331,23 @@ class ActiveTab extends StatelessWidget {
       ),
     );
   }
+
+  @override
+  Widget build(BuildContext context) {
+    return ListView.builder(
+        itemBuilder: (context, index) {
+          return item(context, appointments[index] as Map<dynamic, dynamic>);
+        },
+        itemCount: appointments.length);
+    // item(context);
+  }
 }
 
 class HistoryTab extends StatelessWidget {
+  const HistoryTab({
+    super.key,
+  });
+
   @override
   Widget build(BuildContext context) {
     return Padding(
