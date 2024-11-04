@@ -10,6 +10,7 @@ class EditInformationPage extends StatefulWidget {
 }
 
 class _EditInformationPageState extends State<EditInformationPage> {
+  int selectedIndex = 0;
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -103,12 +104,57 @@ class _EditInformationPageState extends State<EditInformationPage> {
               ),
               const MyCustomTextField(
                 label: 'Address',
-                hintText: 'Slovakia',
+                hintText: '97 Man Thien, Hiep Phu District, Ho Chi Minh City',
               ),
+              _buildGenderOption(),
             ],
           ),
         ),
       ),
+    );
+  }
+
+  Widget _buildGenderOption() {
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: [
+        const Text("Gender", style: TextStyle(fontSize: 18)),
+        Row(
+          children: [
+            Row(
+              children: [
+                Radio(
+                  value: 0,
+                  groupValue: selectedIndex,
+                  onChanged: (value) {
+                    setState(() {
+                      selectedIndex = value!;
+                    });
+                  },
+                ),
+                const SizedBox(width: 5),
+                const Text("Female", style: TextStyle(fontSize: 16)),
+              ],
+            ),
+            const SizedBox(width: 30),
+            Row(
+              children: [
+                Radio(
+                  value: 1,
+                  groupValue: selectedIndex,
+                  onChanged: (value) {
+                    setState(() {
+                      selectedIndex = value!;
+                    });
+                  },
+                ),
+                const SizedBox(width: 5),
+                const Text("Male", style: TextStyle(fontSize: 16)),
+              ],
+            ),
+          ],
+        ),
+      ],
     );
   }
 }

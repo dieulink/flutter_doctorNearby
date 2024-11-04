@@ -105,15 +105,15 @@ class _HomePageState extends State<HomePage> {
                         SizedBox(
                           height: 130,
                           child: ListView.builder(
-                              itemCount: 10,
+                              itemCount: doctorHomeList.length,
                               scrollDirection: Axis.horizontal,
-                              itemBuilder: (context, builder) {
+                              itemBuilder: (context, index) {
                                 return Row(
                                   children: [
                                     DoctorCardItem(
-                                      nameDoctor: 'Stephen Strange',
-                                      speciality: 'Neurosurgeon',
-                                      avatarUrl: doctorStrangeRemoveBg,
+                                      nameDoctor: doctorHomeList[index].doctorName,
+                                      speciality: doctorHomeList[index].speciality,
+                                      avatarUrl: doctorHomeList[index].imageUrl,
                                       onTap: () => Navigator.of(context).push(
                                         MaterialPageRoute(
                                           builder: (context) =>
@@ -236,7 +236,7 @@ class _HomePageState extends State<HomePage> {
                   child: ClipRRect(
                     borderRadius: BorderRadius.circular(5),
                     child: Image.asset(
-                      avtSample,
+                      wandaAvt,
                       fit: BoxFit.cover,
                     ),
                   ),
@@ -258,12 +258,16 @@ class _HomePageState extends State<HomePage> {
                       },
                       child: Row(
                         children: [
-                          const Text(
-                            'Enter an address',
-                            maxLines: 1,
-                            style: TextStyle(
-                              fontSize: 18,
-                              fontWeight: FontWeight.bold,
+                          const SizedBox(
+                            width: 190,
+                            child: Text(
+                              '97 Man Thien, Hiep Phu District',
+                              maxLines: 1,
+                              overflow: TextOverflow.ellipsis,
+                              style: TextStyle(
+                                fontSize: 18,
+                                fontWeight: FontWeight.bold,
+                              ),
                             ),
                           ),
                           const SizedBox(width: 8),
