@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_doctor_nearby/components/icon_button.dart';
+import 'package:flutter_doctor_nearby/screens/main_screens/appointment_page.dart';
 import 'package:flutter_doctor_nearby/ui_values.dart';
 
 class AppoinmentShadowCard extends StatelessWidget {
@@ -73,7 +74,7 @@ class AppoinmentShadowCard extends StatelessWidget {
                               child: ClipRRect(
                                 borderRadius: BorderRadius.circular(5),
                                 child: Image.asset(
-                                  avtSample,
+                                  doctorStrangeAvt,
                                   fit: BoxFit.cover,
                                 ),
                               ),
@@ -90,7 +91,7 @@ class AppoinmentShadowCard extends StatelessWidget {
                                       color: Colors.white),
                                 ),
                                 Text(
-                                  "Dermatologist",
+                                  "Neurosurgeon",
                                   style: TextStyle(
                                       fontSize: 14, color: Colors.white),
                                 )
@@ -98,7 +99,14 @@ class AppoinmentShadowCard extends StatelessWidget {
                             ),
                           ],
                         ),
-                        const MyIconButton(icon: rightIcon,)
+                        MyIconButton(
+                          icon: rightIcon,
+                          onTap: () => Navigator.of(context).push(
+                            MaterialPageRoute(
+                              builder: (context) => const AppointmentPage(),
+                            ),
+                          ),
+                        )
                       ],
                     ),
                   ),

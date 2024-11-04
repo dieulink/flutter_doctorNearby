@@ -23,6 +23,9 @@ const doctorStrangeAvt = 'assets/images/doctor_strange.jpg';
 const wandaAvt = 'assets/images/wanda_avt.jpg';
 const doctorStrangeRemoveBg = 'assets/images/doctor_strange_removebg.png';
 const edwardAvt = 'assets/images/edward_avt.jpg';
+const ikjunAvt = 'assets/images/ik-jun-avt.jpg';
+const songHwaAvt = 'assets/images/song-hwa-avt.jpg';
+const carlisleAvt = 'assets/images/carlise-avt.jpg';
 
 // icons
 const arrowDownIcon = 'assets/icons/arrow_down_icon.png';
@@ -170,6 +173,45 @@ List<Doctor> doctorList = [
     imageUrl: edwardAvt,
     doctorName: 'Edward Cullen',
     speciality: 'Desmatologist',
+    rating: 4.5,
+  ),
+];
+
+List<Doctor> doctorHomeList = [
+  Doctor(
+    imageUrl: doctorStrangeAvt,
+    doctorName: 'Stephen Strange',
+    speciality: 'Neurosurgeon',
+    rating: 5.0,
+  ),
+  Doctor(
+    imageUrl: edwardAvt,
+    doctorName: 'Edward Cullen',
+    speciality: 'Desmatologist',
+    rating: 4.5,
+  ),
+  Doctor(
+    imageUrl: songHwaAvt,
+    doctorName: 'Chae Song Hwa',
+    speciality: 'Neurosurgeon',
+    rating: 5.0,
+  ),
+  Doctor(
+    imageUrl: ikjunAvt,
+    doctorName: 'Lee Ik Jun',
+    speciality: 'Hepatology',
+    rating: 5.0,
+  ),
+  Doctor(
+    imageUrl: carlisleAvt,
+    doctorName: 'Carlisle Cullen',
+    speciality: 'Hematology',
+    rating: 4.8,
+  ),
+  Doctor(
+    imageUrl: doctorAvt,
+    doctorName: 'Arus Elim',
+    speciality: 'Hepatologist',
     rating: 4.5,
   ),
 ];
