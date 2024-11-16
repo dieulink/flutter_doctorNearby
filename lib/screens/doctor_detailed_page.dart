@@ -126,7 +126,11 @@ class _DoctorDetailedPageState extends State<DoctorDetailedPage> {
                   children: [
                     Row(
                       children: [
-                        MyAvatar(avatarUrl: wandaAvt, width: 55, height: 55,),
+                        MyAvatar(
+                          avatarUrl: wandaAvt,
+                          width: 55,
+                          height: 55,
+                        ),
                         Column(
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
@@ -190,13 +194,13 @@ class _DoctorDetailedPageState extends State<DoctorDetailedPage> {
     );
   }
 
-  EasyInfiniteDateTimeLine _buildCalendar() {
-    return EasyInfiniteDateTimeLine(
-      firstDate: getDateTimeList(activeDateTimeList)[0],
-      lastDate: DateTime(
-          DateTime.now().year, DateTime.now().month, DateTime.now().day + 8),
-      disabledDates: unactiveDateTimeList,
-      showTimelineHeader: false,
+  EasyDateTimeLine _buildCalendar() {
+    return EasyDateTimeLine(
+      initialDate: getDateTimeList(activeDateTimeList)[0],
+      headerProps:
+          const EasyHeaderProps(showHeader: false, showSelectedDate: false),
+      disabledDates: getFilteredDates(
+          DateTime(DateTime.now().year), DateTime(DateTime.now().year + 1)),
       timeLineProps: const EasyTimeLineProps(hPadding: 0.0),
       dayProps: EasyDayProps(
         height: 85,
@@ -205,18 +209,13 @@ class _DoctorDetailedPageState extends State<DoctorDetailedPage> {
         dayStructure: DayStructure.dayStrDayNum,
         activeDayStyle: DayStyle(
           dayNumStyle: const TextStyle(
-            color: primaryColor,
+            color: Colors.white,
             fontWeight: FontWeight.bold,
             fontSize: 20,
           ),
-          dayStrStyle: const TextStyle(
-            color: dayStrCalendarColor,
-            fontSize: 12,
-          ),
           decoration: BoxDecoration(
-            color: Colors.white,
+            color: primaryColor,
             borderRadius: BorderRadius.circular(8.0),
-            border: Border.all(color: greyContent),
           ),
         ),
         inactiveDayStyle: DayStyle(
@@ -250,7 +249,6 @@ class _DoctorDetailedPageState extends State<DoctorDetailedPage> {
           ),
         ),
       ),
-      focusDate: null,
     );
   }
 
@@ -302,5 +300,3 @@ class _DoctorDetailedPageState extends State<DoctorDetailedPage> {
     );
   }
 }
-
-

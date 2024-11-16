@@ -56,7 +56,7 @@ class LoginTab extends StatelessWidget {
             Align(
               alignment: Alignment.centerLeft,
               child: const Text(
-                "Wellcome",
+                "Welcome",
                 style: TextStyle(
                   fontSize: 35,
                   fontWeight: FontWeight.bold,
